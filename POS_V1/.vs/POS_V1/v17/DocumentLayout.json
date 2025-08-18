@@ -1,0 +1,95 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\CSHARP\\Learning\\POS_V1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{75C57EA5-4356-47D5-B976-E7BCC09EE234}|POS_V1.csproj|d:\\csharp\\learning\\pos_v1\\tables.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{75C57EA5-4356-47D5-B976-E7BCC09EE234}|POS_V1.csproj|solutionrelative:tables.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C57EA5-4356-47D5-B976-E7BCC09EE234}|POS_V1.csproj|D:\\CSHARP\\Learning\\POS_V1\\readme.md||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{75C57EA5-4356-47D5-B976-E7BCC09EE234}|POS_V1.csproj|solutionrelative:readme.md||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C57EA5-4356-47D5-B976-E7BCC09EE234}|POS_V1.csproj|D:\\CSHARP\\Learning\\POS_V1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{75C57EA5-4356-47D5-B976-E7BCC09EE234}|POS_V1.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 298,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 87,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Tables.txt",
+              "DocumentMoniker": "D:\\CSHARP\\Learning\\POS_V1\\Tables.txt",
+              "RelativeDocumentMoniker": "Tables.txt",
+              "ToolTip": "D:\\CSHARP\\Learning\\POS_V1\\Tables.txt",
+              "RelativeToolTip": "Tables.txt",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAAAKMAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-08-10T13:15:08.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "README.md",
+              "DocumentMoniker": "D:\\CSHARP\\Learning\\POS_V1\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "D:\\CSHARP\\Learning\\POS_V1\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAkwFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-08-10T12:37:32.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "D:\\CSHARP\\Learning\\POS_V1\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "D:\\CSHARP\\Learning\\POS_V1\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-10T12:35:02.805Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

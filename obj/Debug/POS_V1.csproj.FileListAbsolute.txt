@@ -1,0 +1,12 @@
+D:\CSHARP\Learning\POS_V1\bin\Debug\POS_V1.exe.config
+D:\CSHARP\Learning\POS_V1\bin\Debug\POS_V1.exe
+D:\CSHARP\Learning\POS_V1\bin\Debug\POS_V1.pdb
+D:\CSHARP\Learning\POS_V1\bin\Debug\USB-Barcode-Scanner.dll
+D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.csproj.AssemblyReference.cache
+D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.Properties.Resources.resources
+D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.csproj.GenerateResource.cache
+D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.csproj.CoreCompileInputs.cache
+D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.csproj.Up2Date
+D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.exe
+D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.pdb
+D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.exe.config
