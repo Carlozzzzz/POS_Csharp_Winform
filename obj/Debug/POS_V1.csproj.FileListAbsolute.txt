@@ -10,3 +10,17 @@ D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.csproj.Up2Date
 D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.exe
 D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.pdb
 D:\CSHARP\Learning\POS_V1\obj\Debug\POS_V1.exe.config
+D:\POS_Csharp_Winform\bin\Debug\POS_V1.exe.config
+D:\POS_Csharp_Winform\bin\Debug\POS_V1.exe
+D:\POS_Csharp_Winform\bin\Debug\POS_V1.pdb
+D:\POS_Csharp_Winform\bin\Debug\USB-Barcode-Scanner.dll
+D:\POS_Csharp_Winform\obj\Debug\POS_V1.csproj.AssemblyReference.cache
+D:\POS_Csharp_Winform\obj\Debug\POS_V1.exe.config
+D:\POS_Csharp_Winform\obj\Debug\POS_V1.Properties.Resources.resources
+D:\POS_Csharp_Winform\obj\Debug\POS_V1.Views.LoginView.resources
+D:\POS_Csharp_Winform\obj\Debug\POS_V1.csproj.GenerateResource.cache
+D:\POS_Csharp_Winform\obj\Debug\POS_V1.csproj.CoreCompileInputs.cache
+D:\POS_Csharp_Winform\obj\Debug\POS_V1.csproj.Up2Date
+D:\POS_Csharp_Winform\obj\Debug\POS_V1.exe
+D:\POS_Csharp_Winform\obj\Debug\POS_V1.pdb
+D:\POS_Csharp_Winform\obj\Debug\POS_V1.Views.MainView.resources
