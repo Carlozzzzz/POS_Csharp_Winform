@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.panelLeftLogin = new System.Windows.Forms.Panel();
+            this.lblPosSystem = new System.Windows.Forms.Label();
             this.panelRightLogin = new System.Windows.Forms.Panel();
             this.panelLogin = new System.Windows.Forms.Panel();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.tbUsername = new System.Windows.Forms.TextBox();
-            this.lblLogin = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
-            this.lblPosSystem = new System.Windows.Forms.Label();
+            this.lblLogin = new System.Windows.Forms.Label();
+            this.tbUsername = new System.Windows.Forms.TextBox();
             this.pictureLoginLogo = new System.Windows.Forms.PictureBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.panelLeftLogin.SuspendLayout();
             this.panelRightLogin.SuspendLayout();
             this.panelLogin.SuspendLayout();
@@ -54,6 +54,19 @@
             this.panelLeftLogin.Name = "panelLeftLogin";
             this.panelLeftLogin.Size = new System.Drawing.Size(468, 611);
             this.panelLeftLogin.TabIndex = 0;
+            // 
+            // lblPosSystem
+            // 
+            this.lblPosSystem.AutoSize = true;
+            this.lblPosSystem.BackColor = System.Drawing.Color.Transparent;
+            this.lblPosSystem.Font = new System.Drawing.Font("Microsoft YaHei", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPosSystem.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblPosSystem.Location = new System.Drawing.Point(125, 250);
+            this.lblPosSystem.Name = "lblPosSystem";
+            this.lblPosSystem.Size = new System.Drawing.Size(218, 111);
+            this.lblPosSystem.TabIndex = 7;
+            this.lblPosSystem.Text = "Welcome\r\nTO\r\nPOS Inventory\r\n";
+            this.lblPosSystem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelRightLogin
             // 
@@ -79,18 +92,42 @@
             this.panelLogin.Size = new System.Drawing.Size(323, 329);
             this.panelLogin.TabIndex = 0;
             // 
-            // btnLogin
+            // tbPassword
             // 
-            this.btnLogin.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnLogin.FlatAppearance.BorderSize = 0;
-            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(25, 272);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(133, 39);
-            this.btnLogin.TabIndex = 0;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = false;
+            this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPassword.Location = new System.Drawing.Point(25, 220);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(272, 27);
+            this.tbPassword.TabIndex = 6;
+            this.tbPassword.UseSystemPasswordChar = true;
+            // 
+            // lblLogin
+            // 
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLogin.Location = new System.Drawing.Point(126, 151);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(71, 28);
+            this.lblLogin.TabIndex = 5;
+            this.lblLogin.Text = "Login";
+            // 
+            // tbUsername
+            // 
+            this.tbUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUsername.Location = new System.Drawing.Point(25, 184);
+            this.tbUsername.Name = "tbUsername";
+            this.tbUsername.Size = new System.Drawing.Size(272, 27);
+            this.tbUsername.TabIndex = 4;
+            // 
+            // pictureLoginLogo
+            // 
+            this.pictureLoginLogo.Image = global::POS_V1.Properties.Resources.inventory_logo;
+            this.pictureLoginLogo.Location = new System.Drawing.Point(85, 12);
+            this.pictureLoginLogo.Name = "pictureLoginLogo";
+            this.pictureLoginLogo.Size = new System.Drawing.Size(152, 131);
+            this.pictureLoginLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureLoginLogo.TabIndex = 2;
+            this.pictureLoginLogo.TabStop = false;
             // 
             // btnCancel
             // 
@@ -105,54 +142,18 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             // 
-            // tbUsername
+            // btnLogin
             // 
-            this.tbUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUsername.Location = new System.Drawing.Point(25, 184);
-            this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(272, 27);
-            this.tbUsername.TabIndex = 4;
-            // 
-            // lblLogin
-            // 
-            this.lblLogin.AutoSize = true;
-            this.lblLogin.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogin.Location = new System.Drawing.Point(126, 151);
-            this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(71, 28);
-            this.lblLogin.TabIndex = 5;
-            this.lblLogin.Text = "Login";
-            // 
-            // tbPassword
-            // 
-            this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPassword.Location = new System.Drawing.Point(25, 220);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(272, 27);
-            this.tbPassword.TabIndex = 6;
-            // 
-            // lblPosSystem
-            // 
-            this.lblPosSystem.AutoSize = true;
-            this.lblPosSystem.BackColor = System.Drawing.Color.Transparent;
-            this.lblPosSystem.Font = new System.Drawing.Font("Microsoft YaHei", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPosSystem.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblPosSystem.Location = new System.Drawing.Point(125, 250);
-            this.lblPosSystem.Name = "lblPosSystem";
-            this.lblPosSystem.Size = new System.Drawing.Size(218, 111);
-            this.lblPosSystem.TabIndex = 7;
-            this.lblPosSystem.Text = "Welcome\r\nTO\r\nPOS Inventory\r\n";
-            this.lblPosSystem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureLoginLogo
-            // 
-            this.pictureLoginLogo.Image = global::POS_V1.Properties.Resources.inventory_logo;
-            this.pictureLoginLogo.Location = new System.Drawing.Point(85, 12);
-            this.pictureLoginLogo.Name = "pictureLoginLogo";
-            this.pictureLoginLogo.Size = new System.Drawing.Size(152, 131);
-            this.pictureLoginLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureLoginLogo.TabIndex = 2;
-            this.pictureLoginLogo.TabStop = false;
+            this.btnLogin.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnLogin.FlatAppearance.BorderSize = 0;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(25, 272);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(133, 39);
+            this.btnLogin.TabIndex = 0;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = false;
             // 
             // LoginView
             // 

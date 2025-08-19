@@ -8,6 +8,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace POS_V1.Presenters
 {
@@ -15,14 +16,19 @@ namespace POS_V1.Presenters
     {
         private ILoginView _loginView;
         private ILoginRepository _logRepository;
-        private readonly string connectionString;
 
         public LoginPresenter(ILoginView loginView, ILoginRepository logRepository)
         {
-            _loginView = loginView;
-            _logRepository = logRepository;
+            this._loginView = loginView;
+            this._logRepository = logRepository;
+            // subscribe to events
+            this._loginView.LoginEvent += OnLogin;
+            this._loginView.CancelEvent += CancelLogin;
+        }
 
-            _loginView.LoginEvent += OnLogin;
+        private void CancelLogin(object sender, EventArgs e)
+        {
+            _loginView.Close();
         }
 
         private void OnLogin(object sender, EventArgs e)
@@ -34,27 +40,18 @@ namespace POS_V1.Presenters
                 model.Password = _loginView.Password;
 
                 new ModelDataValidation().Validate(model);
-                bool result = _logRepository.ValidateUser(model.Username, model.Password);
+                model = _logRepository.ValidateUser(model.Username, model.Password);
+                _loginView.IsSuccessful = true;
 
-                _loginView.Message = "Success";
-                _loginView.ShowMessage();
+                _loginView.DialogResult = DialogResult.OK;
+                _loginView.Close();
 
-
-                ShowDashboardView();
             }
             catch (Exception ex) 
             {
                 _loginView.Message = ex.Message;
-                _loginView.ShowErroredMessage();
+                _loginView.IsSuccessful = false;
             }
-
-           
-        }
-
-        private void ShowDashboardView()
-        {
-            IMainView _mainView = new MainView();
-            new MainPresenter(_mainView, connectionString);
         }
     }
 }

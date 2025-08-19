@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POS_V1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace POS_V1._Repositories
 {
     public interface ILoginRepository
     {
-        bool ValidateUser(string username, string password);
+        LoginModel ValidateUser(string username, string password);
 
     }
 }

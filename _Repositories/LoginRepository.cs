@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POS_V1.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,19 +15,29 @@ namespace POS_V1._Repositories
             this.connectionString = connectionString;
         }
 
-        public bool ValidateUser(string username, string password)
+        public LoginModel ValidateUser(string username, string password)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT * from Users_Tbl WHERE username = @username AND password = @password";
+                string query = "SELECT username, role from Users_Tbl WHERE username = @username AND password = @password";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@username", username);
                     command.Parameters.AddWithValue("@password", password);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        return reader.Read();
+                        if (reader.Read())
+                        {
+                            LoginModel model = new LoginModel();
+                            model.Username = reader["username"].ToString();
+                            model.Role = (UserRole)reader["role"];
+                            return model;
+                        }
+                        else
+                        {
+                            throw new Exception("Invalid username or password.");
+                        }
                     }
                 }
 

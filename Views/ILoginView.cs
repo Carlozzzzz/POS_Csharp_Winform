@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace POS_V1.Views
 {
@@ -14,12 +15,12 @@ namespace POS_V1.Views
         string Password { get; set; }
         string Message { get; set; }
         UserRole Role { get; set; }
+        bool IsSuccessful { get; set; }
 
         event EventHandler LoginEvent;
         event EventHandler CancelEvent;
 
-        void ShowMessage();
-        void ShowErroredMessage();
-        void Show();
+        DialogResult DialogResult { get; set; }
+        void Close();
     }
 }
