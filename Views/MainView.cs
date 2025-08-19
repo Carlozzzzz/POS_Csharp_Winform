@@ -31,8 +31,13 @@ namespace POS_V1.Views
                 }
             };
 
-            btnDashboard.Click += delegate { 
+            btnDashboard.Click += delegate {
                 ShowDashboardView?.Invoke(this, EventArgs.Empty);
+                MessageBox.Show(Message);
+            };
+
+            btnUsers.Click += delegate {
+                ShowUserView?.Invoke(this, EventArgs.Empty);
                 MessageBox.Show(Message);
             };
 
@@ -53,7 +58,7 @@ namespace POS_V1.Views
 
         public event EventHandler LogoutEvent;
         public event EventHandler ShowDashboardView;
-        public event EventHandler ShowProductView;
         public event EventHandler ShowUserView;
+        public event EventHandler ShowProductView;
     }
 }

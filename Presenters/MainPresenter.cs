@@ -23,19 +23,29 @@ namespace POS_V1.Presenters
 
             // Subscribe to the event here
             this._mainView.LogoutEvent += Logout;
-            this._mainView.ShowProductView += ShowDashboardsView;
+            this._mainView.ShowDashboardView += ShowDashboardsView;
+            this._mainView.ShowUserView += ShowUsersView;
             this._mainView.ShowProductView += ShowProductsView;
             this._mainView.Show();
-        }
-
-        private void ShowProductsView(object sender, EventArgs e)
-        {
-            _mainView.Message = "Puputukan ko na ni kumare ng Products";
         }
 
         private void ShowDashboardsView(object sender, EventArgs e)
         {
             _mainView.Message = "Puputukan ko na ni kumare ng Dashboard";
+        }
+
+        private void ShowUsersView(object sender, EventArgs e)
+        {
+            _mainView.Message = "Puputukan ko na ni kumare ng Users";
+            IUserView userView = UserView.GetInstance((Form)_mainView);
+            IUserRepository userRepository = new UserRepository(connectionString);
+            new UserPresenter(userView, userRepository);
+        }
+
+
+        private void ShowProductsView(object sender, EventArgs e)
+        {
+            _mainView.Message = "Puputukan ko na ni kumare ng Products";
         }
 
         private void Logout(object sender, EventArgs e)

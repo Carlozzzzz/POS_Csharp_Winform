@@ -15,8 +15,8 @@ namespace POS_V1.Views
 
         event EventHandler LogoutEvent;
         event EventHandler ShowDashboardView;
-        event EventHandler ShowProductView;
         event EventHandler ShowUserView;
+        event EventHandler ShowProductView;
 
         DialogResult DialogResult { get; set; }
         void Show();

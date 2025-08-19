@@ -31,20 +31,21 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flPanelMenu = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnDashboard = new System.Windows.Forms.Button();
-            this.lblUserLoggedin = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnUsers = new System.Windows.Forms.Button();
+            this.btnProducts = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.btnProducts = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblUserLoggedin = new System.Windows.Forms.Label();
+            this.btnDashboard = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flPanelMenu.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -80,20 +81,10 @@
             this.panel2.Size = new System.Drawing.Size(218, 548);
             this.panel2.TabIndex = 1;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.pictureBox1.Image = global::POS_V1.Properties.Resources.userLogo;
-            this.pictureBox1.Location = new System.Drawing.Point(33, 8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(33, 38);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // flPanelMenu
             // 
             this.flPanelMenu.Controls.Add(this.btnDashboard);
+            this.flPanelMenu.Controls.Add(this.btnUsers);
             this.flPanelMenu.Controls.Add(this.btnProducts);
             this.flPanelMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flPanelMenu.Location = new System.Drawing.Point(0, 65);
@@ -101,41 +92,33 @@
             this.flPanelMenu.Size = new System.Drawing.Size(218, 409);
             this.flPanelMenu.TabIndex = 1;
             // 
-            // btnDashboard
+            // btnUsers
             // 
-            this.btnDashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDashboard.FlatAppearance.BorderSize = 0;
-            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDashboard.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDashboard.Location = new System.Drawing.Point(0, 0);
-            this.btnDashboard.Margin = new System.Windows.Forms.Padding(0);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(218, 48);
-            this.btnDashboard.TabIndex = 2;
-            this.btnDashboard.Text = "Dashboard";
-            this.btnDashboard.UseVisualStyleBackColor = false;
+            this.btnUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnUsers.FlatAppearance.BorderSize = 0;
+            this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUsers.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnUsers.Location = new System.Drawing.Point(0, 48);
+            this.btnUsers.Margin = new System.Windows.Forms.Padding(0);
+            this.btnUsers.Name = "btnUsers";
+            this.btnUsers.Size = new System.Drawing.Size(218, 48);
+            this.btnUsers.TabIndex = 2;
+            this.btnUsers.Text = "User Management";
+            this.btnUsers.UseVisualStyleBackColor = false;
             // 
-            // lblUserLoggedin
+            // btnProducts
             // 
-            this.lblUserLoggedin.AutoSize = true;
-            this.lblUserLoggedin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserLoggedin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblUserLoggedin.Location = new System.Drawing.Point(72, 17);
-            this.lblUserLoggedin.Name = "lblUserLoggedin";
-            this.lblUserLoggedin.Size = new System.Drawing.Size(83, 20);
-            this.lblUserLoggedin.TabIndex = 0;
-            this.lblUserLoggedin.Text = "Username";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel3.Controls.Add(this.pictureBox1);
-            this.panel3.Controls.Add(this.lblUserLoggedin);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(218, 65);
-            this.panel3.TabIndex = 0;
+            this.btnProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnProducts.FlatAppearance.BorderSize = 0;
+            this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnProducts.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnProducts.Location = new System.Drawing.Point(0, 96);
+            this.btnProducts.Margin = new System.Windows.Forms.Padding(0);
+            this.btnProducts.Name = "btnProducts";
+            this.btnProducts.Size = new System.Drawing.Size(218, 48);
+            this.btnProducts.TabIndex = 3;
+            this.btnProducts.Text = "Products";
+            this.btnProducts.UseVisualStyleBackColor = false;
             // 
             // panel4
             // 
@@ -161,19 +144,52 @@
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = false;
             // 
-            // btnProducts
+            // panel3
             // 
-            this.btnProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnProducts.FlatAppearance.BorderSize = 0;
-            this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnProducts.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnProducts.Location = new System.Drawing.Point(0, 48);
-            this.btnProducts.Margin = new System.Windows.Forms.Padding(0);
-            this.btnProducts.Name = "btnProducts";
-            this.btnProducts.Size = new System.Drawing.Size(218, 48);
-            this.btnProducts.TabIndex = 3;
-            this.btnProducts.Text = "Products";
-            this.btnProducts.UseVisualStyleBackColor = false;
+            this.panel3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel3.Controls.Add(this.pictureBox1);
+            this.panel3.Controls.Add(this.lblUserLoggedin);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(218, 65);
+            this.panel3.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pictureBox1.Image = global::POS_V1.Properties.Resources.userLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(33, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(33, 38);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblUserLoggedin
+            // 
+            this.lblUserLoggedin.AutoSize = true;
+            this.lblUserLoggedin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserLoggedin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblUserLoggedin.Location = new System.Drawing.Point(72, 17);
+            this.lblUserLoggedin.Name = "lblUserLoggedin";
+            this.lblUserLoggedin.Size = new System.Drawing.Size(83, 20);
+            this.lblUserLoggedin.TabIndex = 0;
+            this.lblUserLoggedin.Text = "Username";
+            // 
+            // btnDashboard
+            // 
+            this.btnDashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDashboard.FlatAppearance.BorderSize = 0;
+            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDashboard.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDashboard.Location = new System.Drawing.Point(0, 0);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(0);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.Size = new System.Drawing.Size(218, 48);
+            this.btnDashboard.TabIndex = 4;
+            this.btnDashboard.Text = "Dashboard";
+            this.btnDashboard.UseVisualStyleBackColor = false;
             // 
             // MainView
             // 
@@ -189,11 +205,11 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.flPanelMenu.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -204,12 +220,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FlowLayoutPanel flPanelMenu;
-        private System.Windows.Forms.Button btnDashboard;
+        private System.Windows.Forms.Button btnUsers;
         private System.Windows.Forms.Label lblUserLoggedin;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnProducts;
+        private System.Windows.Forms.Button btnDashboard;
     }
 }
