@@ -44,17 +44,17 @@ namespace POS_V1._Repositories
                     while (reader.Read())
                     {
                         UserModel model = new UserModel();
-                        model.Id = (int)reader[0];
-                        model.Username = reader[1].ToString();
-                        model.First_name = reader[3].ToString();
-                        model.Last_name = reader[4].ToString();
-                        model.Role = (UserRole)reader[5];
-                        model.Email = reader[6].ToString();
-                        model.Phone = reader[7].ToString();
-                        model.Is_active = model.Is_active = (bool)reader["is_active"];
-                        model.Is_deleted = model.Is_active = (bool)reader["is_deleted"];
-                        model.Created_at = (DateTime)reader[10];
-                        model.Updated_at = (DateTime)reader[11];
+                        model.Id = Convert.ToInt32(reader["id"]);
+                        model.Username = reader["username"].ToString();
+                        model.First_name = reader["first_name"].ToString();
+                        model.Last_name = reader["last_name"].ToString();
+                        model.Role = (UserRole)reader["role"];
+                        model.Email = reader["email"].ToString();
+                        model.Phone = reader["phone"].ToString();
+                        model.Is_active = (bool)reader["is_active"];
+                        model.Is_deleted = (bool)reader["is_deleted"];
+                        model.Created_at = (DateTime)reader["created_at"];
+                        model.Updated_at = (DateTime)reader["updated_at"];
                         userList.Add(model);
                     }
                     return userList;
@@ -65,9 +65,44 @@ namespace POS_V1._Repositories
 
         public IEnumerable<UserModel> GetByValue(string value)
         {
-            throw new NotImplementedException();
+            var userList = new List<UserModel>();
+            int userId = int.TryParse(value, out _) ? Convert.ToInt32(value) : 0;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = @"Select * from Users_Tbl 
+                                        WHERE id=@id 
+                                            OR username LIKE '%'+@value+'%'
+                                            OR first_name LIKE '%'+@value+'%'
+                                            OR last_name LIKE '%'+@value+'%'
+                                            OR email LIKE '%'+@value+'%'
+                                            OR phone LIKE '%'+@value+'%'
+                                        ORDER BY id desc";
+                command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = userId;
+                command.Parameters.Add("@value", System.Data.SqlDbType.NVarChar).Value = value;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        UserModel model = new UserModel();
+                        model.Id = Convert.ToInt32(reader["id"]);
+                        model.Username = reader["username"].ToString();
+                        model.First_name = reader["first_name"].ToString();
+                        model.Last_name = reader["last_name"].ToString();
+                        model.Role = (UserRole)reader["role"];
+                        model.Email = reader["email"].ToString();
+                        model.Phone = reader["phone"].ToString();
+                        model.Is_active = (bool)reader["is_active"];
+                        model.Is_deleted = (bool)reader["is_deleted"];
+                        model.Created_at = (DateTime)reader["created_at"];
+                        model.Updated_at = (DateTime)reader["updated_at"];
+                        userList.Add(model);
+                    }
+                    return userList;
+                }
+            }
         }
-
-       
     }
 }

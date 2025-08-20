@@ -32,8 +32,8 @@ namespace POS_V1.Presenters
             this._view.CancelEvent += CancelAction;
 
             // Set user binded source
-            this._view.SetUserListBindingSource(usersBindingSource);
             LoadAllUserList();
+            this._view.SetUserListBindingSource(usersBindingSource);
             this._view.Show();
 
         }
@@ -42,11 +42,16 @@ namespace POS_V1.Presenters
         {
             userList = _repository.GetAll();
             usersBindingSource.DataSource = userList;
+
         }
 
         private void SearchUser(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            bool emptyValue = string.IsNullOrEmpty(this._view.SearchValue);
+            if (emptyValue) userList = _repository.GetAll();
+            else userList = _repository.GetByValue(this._view.SearchValue);
+
+            usersBindingSource.DataSource = userList;
         }
 
         private void AddNewUser(object sender, EventArgs e)

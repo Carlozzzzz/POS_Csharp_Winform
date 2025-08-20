@@ -23,8 +23,19 @@ namespace POS_V1.Views
         public UserView()
         {
             InitializeComponent();
+            AssociateAndRaiseViewEvents();
         }
 
+        private void AssociateAndRaiseViewEvents()
+        {
+            btnSearch.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
+            tbSearch.KeyDown += (s, e) =>
+                {
+                    if (e.KeyCode == Keys.Enter) SearchEvent?.Invoke(this, EventArgs.Empty);
+                };
+        }
+
+        #region Properties
         public string UserId { 
             get => tbUserId.Text; 
             set => tbUserId.Text = value; 
@@ -85,6 +96,12 @@ namespace POS_V1.Views
             get => message; 
             set => message = value; 
         }
+        public string SearchValue
+        {
+            get => tbSearch.Text;
+            set => tbSearch.Text = value;
+        }
+        #endregion
 
         public event EventHandler SearchEvent;
         public event EventHandler AddNewEvent;
@@ -96,6 +113,20 @@ namespace POS_V1.Views
         public void SetUserListBindingSource(BindingSource userList)
         {
             userListGridView.DataSource = userList;
+            userListGridView.Columns["Id"].Visible = false;
+            userListGridView.Columns["Is_deleted"].Visible = false;
+
+            Console.WriteLine("Displaying column names: " );
+            foreach (DataGridViewRow row in userListGridView.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    Console.WriteLine($"Column: {cell.OwningColumn.Name}, Value: {cell.Value}");
+                }
+            }
+
+
+
         }
 
         // Singleton pattern (Open a single form instance)

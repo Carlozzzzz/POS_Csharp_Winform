@@ -39,6 +39,39 @@ namespace POS_V1.Views
                 }
             };
 
+            tbPassword.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    LoginEvent?.Invoke(this, EventArgs.Empty);
+                    if (isSuccessful)
+                    {
+                        MessageBox.Show("Logged in Success.");
+                    }
+                    else
+                    {
+                        MessageBox.Show(Message);
+                    }
+                }
+                    
+            };
+
+            tbUsername.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    LoginEvent?.Invoke(this, EventArgs.Empty);
+                    if (isSuccessful)
+                    {
+                        MessageBox.Show("Logged in Success.");
+                    }
+                    else
+                    {
+                        MessageBox.Show(Message);
+                    }
+                }
+            };
+
             btnCancel.Click += delegate { 
                 var result = MessageBox.Show("Are you sure you want to exit the application?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)

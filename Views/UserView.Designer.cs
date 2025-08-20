@@ -29,18 +29,31 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.userListGridView = new System.Windows.Forms.DataGridView();
             this.tcUser = new System.Windows.Forms.TabControl();
             this.tpUserList = new System.Windows.Forms.TabPage();
-            this.tbUserManage = new System.Windows.Forms.TabPage();
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.tbSearch = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.cbRole = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.tbSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.tbUserManage = new System.Windows.Forms.TabPage();
             this.panelManageUser = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.tbPhone = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbUserRole = new System.Windows.Forms.ComboBox();
+            this.tbPasswordRepeat = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbLastName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.tbPassword = new System.Windows.Forms.TextBox();
@@ -50,19 +63,6 @@
             this.tbFirstName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbUserId = new System.Windows.Forms.TextBox();
-            this.cbRole = new System.Windows.Forms.ComboBox();
-            this.tbLastName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbPasswordRepeat = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cbUserRole = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tbEmail = new System.Windows.Forms.TextBox();
-            this.tbPhone = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userListGridView)).BeginInit();
             this.tcUser.SuspendLayout();
@@ -81,14 +81,30 @@
             this.panel1.Size = new System.Drawing.Size(957, 56);
             this.panel1.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(165, 24);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "User Management";
+            // 
             // userListGridView
             // 
+            this.userListGridView.AllowUserToAddRows = false;
+            this.userListGridView.AllowUserToDeleteRows = false;
             this.userListGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.userListGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.userListGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.userListGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.userListGridView.Location = new System.Drawing.Point(17, 44);
             this.userListGridView.Name = "userListGridView";
+            this.userListGridView.RowHeadersVisible = false;
+            this.userListGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.userListGridView.Size = new System.Drawing.Size(887, 420);
             this.userListGridView.TabIndex = 1;
             // 
@@ -124,63 +140,24 @@
             this.tpUserList.Text = "Users";
             this.tpUserList.UseVisualStyleBackColor = true;
             // 
-            // tbUserManage
+            // cbRole
             // 
-            this.tbUserManage.Controls.Add(this.panelManageUser);
-            this.tbUserManage.Location = new System.Drawing.Point(4, 25);
-            this.tbUserManage.Name = "tbUserManage";
-            this.tbUserManage.Padding = new System.Windows.Forms.Padding(3);
-            this.tbUserManage.Size = new System.Drawing.Size(925, 479);
-            this.tbUserManage.TabIndex = 1;
-            this.tbUserManage.Text = "Manage";
-            this.tbUserManage.UseVisualStyleBackColor = true;
+            this.cbRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRole.FormattingEnabled = true;
+            this.cbRole.Location = new System.Drawing.Point(404, 10);
+            this.cbRole.Name = "cbRole";
+            this.cbRole.Size = new System.Drawing.Size(158, 28);
+            this.cbRole.TabIndex = 8;
             // 
-            // lblSearch
+            // btnDelete
             // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(13, 15);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(64, 20);
-            this.lblSearch.TabIndex = 2;
-            this.lblSearch.Text = "Search:";
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(313, 12);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(68, 26);
-            this.btnSearch.TabIndex = 3;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            // 
-            // tbSearch
-            // 
-            this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearch.Location = new System.Drawing.Point(83, 12);
-            this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(224, 26);
-            this.tbSearch.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 24);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "User Management";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(852, 13);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(53, 26);
-            this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "New";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.Location = new System.Drawing.Point(738, 13);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(57, 26);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // btnEdit
             // 
@@ -192,15 +169,53 @@
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             // 
-            // btnDelete
+            // btnAdd
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(738, 13);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(57, 26);
-            this.btnDelete.TabIndex = 7;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Location = new System.Drawing.Point(852, 13);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(53, 26);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.Text = "New";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            // 
+            // tbSearch
+            // 
+            this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSearch.Location = new System.Drawing.Point(83, 12);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(224, 26);
+            this.tbSearch.TabIndex = 4;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(313, 12);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(68, 26);
+            this.btnSearch.TabIndex = 3;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearch.Location = new System.Drawing.Point(13, 15);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(64, 20);
+            this.lblSearch.TabIndex = 2;
+            this.lblSearch.Text = "Search:";
+            // 
+            // tbUserManage
+            // 
+            this.tbUserManage.Controls.Add(this.panelManageUser);
+            this.tbUserManage.Location = new System.Drawing.Point(4, 25);
+            this.tbUserManage.Name = "tbUserManage";
+            this.tbUserManage.Padding = new System.Windows.Forms.Padding(3);
+            this.tbUserManage.Size = new System.Drawing.Size(925, 479);
+            this.tbUserManage.TabIndex = 1;
+            this.tbUserManage.Text = "Manage";
+            this.tbUserManage.UseVisualStyleBackColor = true;
             // 
             // panelManageUser
             // 
@@ -230,6 +245,107 @@
             this.panelManageUser.Name = "panelManageUser";
             this.panelManageUser.Size = new System.Drawing.Size(919, 473);
             this.panelManageUser.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(247, 240);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(47, 16);
+            this.label10.TabIndex = 52;
+            this.label10.Text = "Status:";
+            // 
+            // cbStatus
+            // 
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "Active",
+            "Inactive"});
+            this.cbStatus.Location = new System.Drawing.Point(250, 259);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(153, 24);
+            this.cbStatus.TabIndex = 51;
+            // 
+            // tbPhone
+            // 
+            this.tbPhone.Location = new System.Drawing.Point(63, 198);
+            this.tbPhone.Name = "tbPhone";
+            this.tbPhone.Size = new System.Drawing.Size(340, 22);
+            this.tbPhone.TabIndex = 50;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(60, 179);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(100, 16);
+            this.label9.TabIndex = 49;
+            this.label9.Text = "Phone Number:";
+            // 
+            // tbEmail
+            // 
+            this.tbEmail.Location = new System.Drawing.Point(63, 141);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(340, 22);
+            this.tbEmail.TabIndex = 48;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(60, 122);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(44, 16);
+            this.label8.TabIndex = 46;
+            this.label8.Text = "Email:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(60, 240);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(71, 16);
+            this.label7.TabIndex = 45;
+            this.label7.Text = "User Role:";
+            // 
+            // cbUserRole
+            // 
+            this.cbUserRole.FormattingEnabled = true;
+            this.cbUserRole.Location = new System.Drawing.Point(63, 259);
+            this.cbUserRole.Name = "cbUserRole";
+            this.cbUserRole.Size = new System.Drawing.Size(153, 24);
+            this.cbUserRole.TabIndex = 44;
+            // 
+            // tbPasswordRepeat
+            // 
+            this.tbPasswordRepeat.Location = new System.Drawing.Point(520, 200);
+            this.tbPasswordRepeat.Name = "tbPasswordRepeat";
+            this.tbPasswordRepeat.Size = new System.Drawing.Size(340, 22);
+            this.tbPasswordRepeat.TabIndex = 43;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(517, 184);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(123, 16);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "Retype - password:";
+            // 
+            // tbLastName
+            // 
+            this.tbLastName.Location = new System.Drawing.Point(250, 78);
+            this.tbLastName.Name = "tbLastName";
+            this.tbLastName.Size = new System.Drawing.Size(153, 22);
+            this.tbLastName.TabIndex = 41;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(247, 62);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 16);
+            this.label2.TabIndex = 40;
+            this.label2.Text = "Last Name:";
             // 
             // btnCancel
             // 
@@ -310,116 +426,6 @@
             this.tbUserId.TabIndex = 31;
             this.tbUserId.Text = "0";
             this.tbUserId.Visible = false;
-            // 
-            // cbRole
-            // 
-            this.cbRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbRole.FormattingEnabled = true;
-            this.cbRole.Location = new System.Drawing.Point(404, 10);
-            this.cbRole.Name = "cbRole";
-            this.cbRole.Size = new System.Drawing.Size(158, 28);
-            this.cbRole.TabIndex = 8;
-            // 
-            // tbLastName
-            // 
-            this.tbLastName.Location = new System.Drawing.Point(250, 78);
-            this.tbLastName.Name = "tbLastName";
-            this.tbLastName.Size = new System.Drawing.Size(153, 22);
-            this.tbLastName.TabIndex = 41;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(247, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 16);
-            this.label2.TabIndex = 40;
-            this.label2.Text = "Last Name:";
-            // 
-            // tbPasswordRepeat
-            // 
-            this.tbPasswordRepeat.Location = new System.Drawing.Point(520, 200);
-            this.tbPasswordRepeat.Name = "tbPasswordRepeat";
-            this.tbPasswordRepeat.Size = new System.Drawing.Size(340, 22);
-            this.tbPasswordRepeat.TabIndex = 43;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(517, 184);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(123, 16);
-            this.label6.TabIndex = 42;
-            this.label6.Text = "Retype - password:";
-            // 
-            // cbUserRole
-            // 
-            this.cbUserRole.FormattingEnabled = true;
-            this.cbUserRole.Location = new System.Drawing.Point(63, 259);
-            this.cbUserRole.Name = "cbUserRole";
-            this.cbUserRole.Size = new System.Drawing.Size(153, 24);
-            this.cbUserRole.TabIndex = 44;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(60, 240);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 16);
-            this.label7.TabIndex = 45;
-            this.label7.Text = "User Role:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(60, 122);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 16);
-            this.label8.TabIndex = 46;
-            this.label8.Text = "Email:";
-            // 
-            // tbEmail
-            // 
-            this.tbEmail.Location = new System.Drawing.Point(63, 141);
-            this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(340, 22);
-            this.tbEmail.TabIndex = 48;
-            // 
-            // tbPhone
-            // 
-            this.tbPhone.Location = new System.Drawing.Point(63, 198);
-            this.tbPhone.Name = "tbPhone";
-            this.tbPhone.Size = new System.Drawing.Size(340, 22);
-            this.tbPhone.TabIndex = 50;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(60, 179);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(100, 16);
-            this.label9.TabIndex = 49;
-            this.label9.Text = "Phone Number:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(247, 240);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(47, 16);
-            this.label10.TabIndex = 52;
-            this.label10.Text = "Status:";
-            // 
-            // cbStatus
-            // 
-            this.cbStatus.FormattingEnabled = true;
-            this.cbStatus.Items.AddRange(new object[] {
-            "Active",
-            "Inactive"});
-            this.cbStatus.Location = new System.Drawing.Point(250, 259);
-            this.cbStatus.Name = "cbStatus";
-            this.cbStatus.Size = new System.Drawing.Size(153, 24);
-            this.cbStatus.TabIndex = 51;
             // 
             // UserView
             // 

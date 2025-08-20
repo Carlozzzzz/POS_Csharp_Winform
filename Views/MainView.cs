@@ -38,7 +38,7 @@ namespace POS_V1.Views
 
             btnUsers.Click += delegate {
                 ShowUserView?.Invoke(this, EventArgs.Empty);
-                MessageBox.Show(Message);
+                //MessageBox.Show(Message);
             };
 
             btnProducts.Click += delegate { 

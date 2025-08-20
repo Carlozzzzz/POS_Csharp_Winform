@@ -31,7 +31,7 @@ namespace POS_V1.Presenters
 
         private void ShowDashboardsView(object sender, EventArgs e)
         {
-            _mainView.Message = "Puputukan ko na ni kumare ng Dashboard";
+            _mainView.Message = "Puputukan ka na ni kumare ng Dashboard";
         }
 
         private void ShowUsersView(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace POS_V1.Presenters
 
         private void ShowProductsView(object sender, EventArgs e)
         {
-            _mainView.Message = "Puputukan ko na ni kumare ng Products";
+            _mainView.Message = "Puputukan ka na ni kumare ng Products";
         }
 
         private void Logout(object sender, EventArgs e)

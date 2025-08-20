@@ -26,6 +26,7 @@ namespace POS_V1.Views
         DateTime UpdatedAt { get; set; }
         bool IsEdit { get; set; }
         bool IsSuccessful { get; set; }
+        string SearchValue { get; set; }
         string Message { get; set; }
 
         // Events
