@@ -66,6 +66,7 @@ namespace POS_V1.Models
         public string Phone { get => phone; set => phone = value; }
 
         [DisplayName("Status")]
+        [Required(ErrorMessage = "Status is required.")]
         public bool Is_active { get => is_active; set => is_active = value; }
 
         [DisplayName("Is Deleted")]

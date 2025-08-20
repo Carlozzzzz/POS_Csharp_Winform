@@ -40,7 +40,7 @@
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblSearch = new System.Windows.Forms.Label();
-            this.tbUserManage = new System.Windows.Forms.TabPage();
+            this.tpUserManage = new System.Windows.Forms.TabPage();
             this.panelManageUser = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.cbStatus = new System.Windows.Forms.ComboBox();
@@ -67,7 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userListGridView)).BeginInit();
             this.tcUser.SuspendLayout();
             this.tpUserList.SuspendLayout();
-            this.tbUserManage.SuspendLayout();
+            this.tpUserManage.SuspendLayout();
             this.panelManageUser.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,7 +114,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tcUser.Controls.Add(this.tpUserList);
-            this.tcUser.Controls.Add(this.tbUserManage);
+            this.tcUser.Controls.Add(this.tpUserManage);
             this.tcUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcUser.Location = new System.Drawing.Point(12, 62);
             this.tcUser.Name = "tcUser";
@@ -206,16 +206,16 @@
             this.lblSearch.TabIndex = 2;
             this.lblSearch.Text = "Search:";
             // 
-            // tbUserManage
+            // tpUserManage
             // 
-            this.tbUserManage.Controls.Add(this.panelManageUser);
-            this.tbUserManage.Location = new System.Drawing.Point(4, 25);
-            this.tbUserManage.Name = "tbUserManage";
-            this.tbUserManage.Padding = new System.Windows.Forms.Padding(3);
-            this.tbUserManage.Size = new System.Drawing.Size(925, 479);
-            this.tbUserManage.TabIndex = 1;
-            this.tbUserManage.Text = "Manage";
-            this.tbUserManage.UseVisualStyleBackColor = true;
+            this.tpUserManage.Controls.Add(this.panelManageUser);
+            this.tpUserManage.Location = new System.Drawing.Point(4, 25);
+            this.tpUserManage.Name = "tpUserManage";
+            this.tpUserManage.Padding = new System.Windows.Forms.Padding(3);
+            this.tpUserManage.Size = new System.Drawing.Size(925, 479);
+            this.tpUserManage.TabIndex = 1;
+            this.tpUserManage.Text = "Manage";
+            this.tpUserManage.UseVisualStyleBackColor = true;
             // 
             // panelManageUser
             // 
@@ -349,6 +349,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(460, 396);
             this.btnCancel.Name = "btnCancel";
@@ -359,6 +360,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.Cyan;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.DarkSlateGray;
@@ -442,7 +444,7 @@
             this.tcUser.ResumeLayout(false);
             this.tpUserList.ResumeLayout(false);
             this.tpUserList.PerformLayout();
-            this.tbUserManage.ResumeLayout(false);
+            this.tpUserManage.ResumeLayout(false);
             this.panelManageUser.ResumeLayout(false);
             this.panelManageUser.PerformLayout();
             this.ResumeLayout(false);
@@ -455,7 +457,7 @@
         private System.Windows.Forms.DataGridView userListGridView;
         private System.Windows.Forms.TabControl tcUser;
         private System.Windows.Forms.TabPage tpUserList;
-        private System.Windows.Forms.TabPage tbUserManage;
+        private System.Windows.Forms.TabPage tpUserManage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Button btnSearch;

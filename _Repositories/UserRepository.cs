@@ -17,7 +17,25 @@ namespace POS_V1._Repositories
         }
         public void Add(UserModel userModel)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = @"INSERT INTO Users_Tbl
+                                        VALUES (@username, @password, @first_name, @last_name, @role, @email, @phone, @is_active, @created_at, @updated_at)";
+                command.Parameters.Add("@username", System.Data.SqlDbType.NVarChar).Value = userModel.Username;
+                command.Parameters.Add("@password", System.Data.SqlDbType.NVarChar).Value = userModel.Password;
+                command.Parameters.Add("@first_name", System.Data.SqlDbType.NVarChar).Value = userModel.First_name;
+                command.Parameters.Add("@last_name", System.Data.SqlDbType.NVarChar).Value = userModel.Last_name;
+                command.Parameters.Add("@role", System.Data.SqlDbType.Int).Value = (int)userModel.Role;
+                command.Parameters.Add("@email", System.Data.SqlDbType.NVarChar).Value = userModel.Email;
+                command.Parameters.Add("@phone", System.Data.SqlDbType.NVarChar).Value = userModel.Phone;
+                command.Parameters.Add("@is_active", System.Data.SqlDbType.NVarChar).Value = userModel.Is_active;
+                command.Parameters.Add("@phone", System.Data.SqlDbType.NVarChar).Value = userModel.Created_at;
+                command.Parameters.Add("@phone", System.Data.SqlDbType.NVarChar).Value = userModel.Updated_at;
+                command.ExecuteNonQuery();
+            }
         }
 
         public void Edit(UserModel userModel)

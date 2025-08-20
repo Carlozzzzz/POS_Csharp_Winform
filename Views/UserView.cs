@@ -1,4 +1,5 @@
 ﻿using POS_V1.Models;
+using POS_V1.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,11 +20,13 @@ namespace POS_V1.Views
         private bool isEdit;
         private bool isSuccessful;
         private string message;
+        private string messageType;
 
         public UserView()
         {
             InitializeComponent();
             AssociateAndRaiseViewEvents();
+            tcUser.TabPages.Remove(tpUserManage);
         }
 
         private void AssociateAndRaiseViewEvents()
@@ -33,6 +36,35 @@ namespace POS_V1.Views
                 {
                     if (e.KeyCode == Keys.Enter) SearchEvent?.Invoke(this, EventArgs.Empty);
                 };
+
+            // Add
+            btnAdd.Click += delegate { 
+                AddNewEvent?.Invoke(this, EventArgs.Empty);
+                ShowUserManage();
+            };
+
+            // Save
+            btnSave.Click += delegate
+            {
+                SaveEvent?.Invoke(this, EventArgs.Empty);
+                if (IsSuccessful)
+                {
+                    ShowUserList();
+                }
+
+                MessageBox.Show(Message, MessageType, MessageBoxButtons.OK, CustomHelper.GetMessageBoxIcon(MessageType));
+            };
+        }
+
+        private void ShowUserManage()
+        {
+            tcUser.TabPages.Remove(tpUserList);
+            tcUser.TabPages.Add(tpUserManage);
+        }
+        private void ShowUserList()
+        {
+            tcUser.TabPages.Remove(tpUserManage);
+            tcUser.TabPages.Add(tpUserList);
         }
 
         #region Properties
@@ -60,13 +92,18 @@ namespace POS_V1.Views
             get => tbLastName.Text; 
             set => tbLastName.Text = value; 
         }
-        public UserRole Role { 
-            get => (UserRole)cbRole.SelectedValue; 
-            set => cbRole.SelectedValue = value; 
+        public int Role { 
+            get => (int)cbUserRole.SelectedValue;
+            set => cbUserRole.SelectedValue = (int)value; 
         }
-        public string Phone { 
-            get => tbPhone.Text; 
-            set => tbPhone.Text = value; 
+        public string Email { 
+            get => tbEmail.Text; 
+            set => tbEmail.Text = value; 
+        }
+        public string Phone
+        {
+            get => tbPhone.Text;
+            set => tbPhone.Text = value;
         }
         public bool IsActive {
             get => cbStatus.SelectedItem?.ToString().ToLower() == "active";
@@ -96,6 +133,11 @@ namespace POS_V1.Views
             get => message; 
             set => message = value; 
         }
+        public string MessageType
+        {
+            get => messageType = string.IsNullOrEmpty(messageType) ? "Information" : messageType;
+            set => messageType = string.IsNullOrEmpty(value) ? "Information" : value;
+        }
         public string SearchValue
         {
             get => tbSearch.Text;
@@ -103,12 +145,14 @@ namespace POS_V1.Views
         }
         #endregion
 
+        #region Events
         public event EventHandler SearchEvent;
         public event EventHandler AddNewEvent;
         public event EventHandler EditEvent;
         public event EventHandler SoftDeleteEvent;
         public event EventHandler SaveEvent;
         public event EventHandler CancelEvent;
+        #endregion
 
         public void SetUserListBindingSource(BindingSource userList)
         {
@@ -116,21 +160,19 @@ namespace POS_V1.Views
             userListGridView.Columns["Id"].Visible = false;
             userListGridView.Columns["Is_deleted"].Visible = false;
 
-            Console.WriteLine("Displaying column names: " );
-            foreach (DataGridViewRow row in userListGridView.Rows)
-            {
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    Console.WriteLine($"Column: {cell.OwningColumn.Name}, Value: {cell.Value}");
-                }
-            }
-
-
-
         }
 
+        public void PopulateRole(List<ComboModel> roleList)
+        {
+            cbUserRole.DataSource = roleList;
+            cbUserRole.ValueMember = "Value";
+            cbUserRole.DisplayMember = "Name";
+        }
+
+        #region Display Behavior
         // Singleton pattern (Open a single form instance)
         private static UserView instance;
+
         public static UserView GetInstance(Form parentContainer)
         {
             if (instance == null || instance.IsDisposed)
@@ -148,6 +190,7 @@ namespace POS_V1.Views
             }
             return instance;
         }
+        #endregion
 
     }
 }

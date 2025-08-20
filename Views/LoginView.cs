@@ -28,15 +28,8 @@ namespace POS_V1.Views
         private void AssociateAndRaiseViewEvents()
         {
             btnLogin.Click += delegate { 
-                LoginEvent?.Invoke(this, EventArgs.Empty); 
-                if (isSuccessful)
-                {
-                    MessageBox.Show("Logged in Success.");
-                }
-                else
-                {
-                    MessageBox.Show(Message);
-                }
+                LoginEvent?.Invoke(this, EventArgs.Empty);
+                MessageBox.Show(Message);
             };
 
             tbPassword.KeyDown += (s, e) =>
@@ -44,16 +37,9 @@ namespace POS_V1.Views
                 if (e.KeyCode == Keys.Enter)
                 {
                     LoginEvent?.Invoke(this, EventArgs.Empty);
-                    if (isSuccessful)
-                    {
-                        MessageBox.Show("Logged in Success.");
-                    }
-                    else
-                    {
-                        MessageBox.Show(Message);
-                    }
+                    MessageBox.Show(Message);
                 }
-                    
+
             };
 
             tbUsername.KeyDown += (s, e) =>
@@ -61,14 +47,7 @@ namespace POS_V1.Views
                 if (e.KeyCode == Keys.Enter)
                 {
                     LoginEvent?.Invoke(this, EventArgs.Empty);
-                    if (isSuccessful)
-                    {
-                        MessageBox.Show("Logged in Success.");
-                    }
-                    else
-                    {
-                        MessageBox.Show(Message);
-                    }
+                    MessageBox.Show(Message);
                 }
             };
 

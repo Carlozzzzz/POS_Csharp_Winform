@@ -18,7 +18,8 @@ namespace POS_V1.Views
         string PasswordRepeat { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
-        UserRole Role { get; set; }
+        int Role { get; set; }
+        string Email { get; set; }
         string Phone { get; set; }
         bool IsActive { get; set; }
         bool IsDeleted { get; set; }
@@ -28,6 +29,7 @@ namespace POS_V1.Views
         bool IsSuccessful { get; set; }
         string SearchValue { get; set; }
         string Message { get; set; }
+        string MessageType { get; set; }
 
         // Events
         event EventHandler SearchEvent;
@@ -39,6 +41,7 @@ namespace POS_V1.Views
 
         // Methods
         void SetUserListBindingSource(BindingSource userList);
+        void PopulateRole(List<ComboModel> roleList);
         void Show();
     }
 }

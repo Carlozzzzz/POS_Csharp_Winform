@@ -1,5 +1,6 @@
 ﻿using POS_V1._Repositories;
 using POS_V1.Models;
+using POS_V1.Services;
 using POS_V1.Views;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace POS_V1.Presenters
         private IUserRepository _repository;
         private BindingSource usersBindingSource;
         private IEnumerable<UserModel> userList;
+        private List<ComboModel> roleList;
 
         public UserPresenter(IUserView view, IUserRepository repository)
         {
@@ -34,8 +36,9 @@ namespace POS_V1.Presenters
             // Set user binded source
             LoadAllUserList();
             this._view.SetUserListBindingSource(usersBindingSource);
+            this.roleList = LoadAllRoleList();
+            this._view.PopulateRole(roleList);
             this._view.Show();
-
         }
 
         private void LoadAllUserList()
@@ -45,6 +48,16 @@ namespace POS_V1.Presenters
 
         }
 
+        private List<ComboModel> LoadAllRoleList()
+        {
+            var roles = new List<ComboModel>();
+            foreach (var role in Enum.GetValues(typeof(UserRole)))
+            {
+                int value = (int)role;
+                roles.Add(new ComboModel() { Name = role.ToString(), Value = value });
+            }
+            return roles;
+        }
         private void SearchUser(object sender, EventArgs e)
         {
             bool emptyValue = string.IsNullOrEmpty(this._view.SearchValue);
@@ -56,7 +69,9 @@ namespace POS_V1.Presenters
 
         private void AddNewUser(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            // do something behind the scenes
+            _view.IsEdit = false;
+            _view.Message = "Tangina ayaw gumana";
         }
 
         private void LoadSelectedUserToEdit(object sender, EventArgs e)
@@ -71,7 +86,56 @@ namespace POS_V1.Presenters
 
         private void SaveUser(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            UserModel userModel = new UserModel();
+            userModel.Username = _view.Username;
+            userModel.Password = _view.Password;
+            userModel.First_name = _view.FirstName;
+            userModel.Last_name = _view.LastName;
+            userModel.Role = (UserRole)_view.Role;
+            userModel.Email = _view.Email;
+            userModel.Phone = _view.Phone;
+            userModel.Is_active = _view.IsActive;
+            userModel.Created_at = DateTime.Now;
+            userModel.Updated_at= DateTime.Now;
+
+
+            try
+            {
+                if (_view.IsEdit)
+                {
+                    // implement edit logic here
+                }
+                else
+                {
+                    new ModelDataValidation().Validate(userModel);
+                    Console.WriteLine("===== UserModel Details =====");
+                    Console.WriteLine($"Username   : {userModel.Username}");
+                    Console.WriteLine($"Password   : {userModel.Password}");
+                    Console.WriteLine($"First Name : {userModel.First_name}");
+                    Console.WriteLine($"Last Name  : {userModel.Last_name}");
+                    Console.WriteLine($"Role       : {userModel.Role}");
+                    Console.WriteLine($"Email      : {userModel.Email}");
+                    Console.WriteLine($"Phone      : {userModel.Phone}");
+                    Console.WriteLine($"Is Active  : {userModel.Is_active}");
+                    Console.WriteLine($"Created At : {userModel.Created_at}");
+                    Console.WriteLine($"Updated At : {userModel.Updated_at}");
+                    Console.WriteLine("==============================");
+
+                    //_repository.Add(userModel);
+                    _view.Message = "Successfully added new User.";
+                }
+                _view.MessageType = "Success";
+                _view.IsSuccessful = true;
+            }
+            catch (Exception ex)
+            {
+                _view.Message = ex.Message;
+                _view.MessageType = "Error";
+                _view.IsSuccessful = false;
+            }
+           
+
+
         }
 
         private void CancelAction(object sender, EventArgs e)

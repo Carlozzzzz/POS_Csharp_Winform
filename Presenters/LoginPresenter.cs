@@ -42,7 +42,7 @@ namespace POS_V1.Presenters
                 new ModelDataValidation().Validate(model);
                 model = _logRepository.ValidateUser(model.Username, model.Password);
                 _loginView.IsSuccessful = true;
-
+                _loginView.Message = "Logged in Success.";
                 _loginView.DialogResult = DialogResult.OK;
                 _loginView.Close();
 
