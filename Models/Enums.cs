@@ -18,4 +18,10 @@ namespace POS_V1.Models
         Cashier = 3,
         Manage = 4
     }
+
+    public enum UserStatus
+    {
+        Active = 1,
+        Inactive = 2,
+    }
 }

@@ -26,23 +26,23 @@ namespace POS_V1
 
             while (true)
             {
-                LoginView loginView = new LoginView();
-                ILoginRepository loginRepository = new LoginRepository(connectionString);
-                new LoginPresenter(loginView, loginRepository);
+                //LoginView loginView = new LoginView();
+                //ILoginRepository loginRepository = new LoginRepository(connectionString);
+                //new LoginPresenter(loginView, loginRepository);
 
-                if (loginView.ShowDialog() == DialogResult.OK)
-                {
+                //if (loginView.ShowDialog() == DialogResult.OK)
+                //{
                     MainView mainView = new MainView();
                     new MainPresenter(mainView, connectionString);
                     Application.Run(mainView);
 
                     if (!mainView.IsLoggedout)
                         break; // user closed app normally → exit loop
-                }
-                else
-                {
-                    break; // login canceled → exit app
-                }
+                //}
+                //else
+                //{
+                //    break; // login canceled → exit app
+                //}
             }
         }
     }

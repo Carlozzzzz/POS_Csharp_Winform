@@ -32,6 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flPanelMenu = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnDashboard = new System.Windows.Forms.Button();
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnProducts = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -39,7 +40,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblUserLoggedin = new System.Windows.Forms.Label();
-            this.btnDashboard = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flPanelMenu.SuspendLayout();
@@ -55,7 +55,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(218, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(886, 65);
+            this.panel1.Size = new System.Drawing.Size(1077, 65);
             this.panel1.TabIndex = 0;
             // 
             // label2
@@ -78,7 +78,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(218, 548);
+            this.panel2.Size = new System.Drawing.Size(218, 696);
             this.panel2.TabIndex = 1;
             // 
             // flPanelMenu
@@ -89,8 +89,22 @@
             this.flPanelMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flPanelMenu.Location = new System.Drawing.Point(0, 65);
             this.flPanelMenu.Name = "flPanelMenu";
-            this.flPanelMenu.Size = new System.Drawing.Size(218, 409);
+            this.flPanelMenu.Size = new System.Drawing.Size(218, 557);
             this.flPanelMenu.TabIndex = 1;
+            // 
+            // btnDashboard
+            // 
+            this.btnDashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDashboard.FlatAppearance.BorderSize = 0;
+            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDashboard.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDashboard.Location = new System.Drawing.Point(0, 0);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(0);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.Size = new System.Drawing.Size(218, 48);
+            this.btnDashboard.TabIndex = 4;
+            this.btnDashboard.Text = "Dashboard";
+            this.btnDashboard.UseVisualStyleBackColor = false;
             // 
             // btnUsers
             // 
@@ -124,7 +138,7 @@
             // 
             this.panel4.Controls.Add(this.btnLogout);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 474);
+            this.panel4.Location = new System.Drawing.Point(0, 622);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(218, 74);
             this.panel4.TabIndex = 2;
@@ -177,25 +191,11 @@
             this.lblUserLoggedin.TabIndex = 0;
             this.lblUserLoggedin.Text = "Username";
             // 
-            // btnDashboard
-            // 
-            this.btnDashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDashboard.FlatAppearance.BorderSize = 0;
-            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDashboard.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDashboard.Location = new System.Drawing.Point(0, 0);
-            this.btnDashboard.Margin = new System.Windows.Forms.Padding(0);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(218, 48);
-            this.btnDashboard.TabIndex = 4;
-            this.btnDashboard.Text = "Dashboard";
-            this.btnDashboard.UseVisualStyleBackColor = false;
-            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1104, 548);
+            this.ClientSize = new System.Drawing.Size(1295, 696);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.IsMdiContainer = true;

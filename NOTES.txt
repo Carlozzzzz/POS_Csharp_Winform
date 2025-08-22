@@ -2,3 +2,22 @@ UserRole Enum (admin, cashier, manager)
 ProductUnit Enum (pcs, bottle, kg, pack)
 
 AuditLog_Tbl *** user_action (either tbl | enum)
+
+
+
+
+Removing Unique Property in SQL
+
+ALTER TABLE Users_Tbl
+DROP CONSTRAINT UQ__Users_Tb__6E2DBEDE4F6A8330;
+
+SELECT 
+    t.name AS TableName,
+    c.name AS ColumnName,
+    i.name AS IndexName,
+    i.type_desc AS IndexType
+FROM sys.indexes i
+INNER JOIN sys.index_columns ic ON i.object_id = ic.object_id AND i.index_id = ic.index_id
+INNER JOIN sys.columns c ON ic.object_id = c.object_id AND ic.column_id = c.column_id
+INNER JOIN sys.tables t ON i.object_id = t.object_id
+WHERE t.name = 'Users_Tbl';

@@ -33,7 +33,17 @@
             this.userListGridView = new System.Windows.Forms.DataGridView();
             this.tcUser = new System.Windows.Forms.TabControl();
             this.tpUserList = new System.Windows.Forms.TabPage();
-            this.cbRole = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnApplyFilter = new System.Windows.Forms.Button();
+            this.lblModifiedAt = new System.Windows.Forms.Label();
+            this.dtpEndDateFilter = new System.Windows.Forms.DateTimePicker();
+            this.dtpStartDateFilter = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbStatusFilter = new System.Windows.Forms.ComboBox();
+            this.lblRoleFilter = new System.Windows.Forms.Label();
+            this.lblFilter = new System.Windows.Forms.Label();
+            this.cbRoleFilter = new System.Windows.Forms.ComboBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -63,10 +73,12 @@
             this.tbFirstName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbUserId = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userListGridView)).BeginInit();
             this.tcUser.SuspendLayout();
             this.tpUserList.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.tpUserManage.SuspendLayout();
             this.panelManageUser.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +90,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(957, 56);
+            this.panel1.Size = new System.Drawing.Size(1065, 56);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -105,7 +117,7 @@
             this.userListGridView.Name = "userListGridView";
             this.userListGridView.RowHeadersVisible = false;
             this.userListGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.userListGridView.Size = new System.Drawing.Size(887, 420);
+            this.userListGridView.Size = new System.Drawing.Size(780, 382);
             this.userListGridView.TabIndex = 1;
             // 
             // tcUser
@@ -119,12 +131,13 @@
             this.tcUser.Location = new System.Drawing.Point(12, 62);
             this.tcUser.Name = "tcUser";
             this.tcUser.SelectedIndex = 0;
-            this.tcUser.Size = new System.Drawing.Size(933, 508);
+            this.tcUser.Size = new System.Drawing.Size(1041, 471);
             this.tcUser.TabIndex = 2;
             // 
             // tpUserList
             // 
-            this.tpUserList.Controls.Add(this.cbRole);
+            this.tpUserList.Controls.Add(this.panel2);
+            this.tpUserList.Controls.Add(this.btnRefresh);
             this.tpUserList.Controls.Add(this.btnDelete);
             this.tpUserList.Controls.Add(this.btnEdit);
             this.tpUserList.Controls.Add(this.btnAdd);
@@ -135,47 +148,164 @@
             this.tpUserList.Location = new System.Drawing.Point(4, 25);
             this.tpUserList.Name = "tpUserList";
             this.tpUserList.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUserList.Size = new System.Drawing.Size(925, 479);
+            this.tpUserList.Size = new System.Drawing.Size(1033, 442);
             this.tpUserList.TabIndex = 0;
             this.tpUserList.Text = "Users";
             this.tpUserList.UseVisualStyleBackColor = true;
             // 
-            // cbRole
+            // panel2
             // 
-            this.cbRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbRole.FormattingEnabled = true;
-            this.cbRole.Location = new System.Drawing.Point(404, 10);
-            this.cbRole.Name = "cbRole";
-            this.cbRole.Size = new System.Drawing.Size(158, 28);
-            this.cbRole.TabIndex = 8;
+            this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.btnApplyFilter);
+            this.panel2.Controls.Add(this.lblModifiedAt);
+            this.panel2.Controls.Add(this.dtpEndDateFilter);
+            this.panel2.Controls.Add(this.dtpStartDateFilter);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.cbStatusFilter);
+            this.panel2.Controls.Add(this.lblRoleFilter);
+            this.panel2.Controls.Add(this.lblFilter);
+            this.panel2.Controls.Add(this.cbRoleFilter);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(803, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(227, 436);
+            this.panel2.TabIndex = 10;
+            // 
+            // btnApplyFilter
+            // 
+            this.btnApplyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApplyFilter.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnApplyFilter.FlatAppearance.BorderSize = 0;
+            this.btnApplyFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnApplyFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApplyFilter.ForeColor = System.Drawing.Color.White;
+            this.btnApplyFilter.Location = new System.Drawing.Point(16, 383);
+            this.btnApplyFilter.Name = "btnApplyFilter";
+            this.btnApplyFilter.Size = new System.Drawing.Size(193, 40);
+            this.btnApplyFilter.TabIndex = 11;
+            this.btnApplyFilter.Text = "Apply Filter";
+            this.btnApplyFilter.UseVisualStyleBackColor = false;
+            // 
+            // lblModifiedAt
+            // 
+            this.lblModifiedAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModifiedAt.Location = new System.Drawing.Point(18, 241);
+            this.lblModifiedAt.Name = "lblModifiedAt";
+            this.lblModifiedAt.Size = new System.Drawing.Size(191, 17);
+            this.lblModifiedAt.TabIndex = 16;
+            this.lblModifiedAt.Text = "to";
+            this.lblModifiedAt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dtpEndDateFilter
+            // 
+            this.dtpEndDateFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpEndDateFilter.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEndDateFilter.Location = new System.Drawing.Point(18, 261);
+            this.dtpEndDateFilter.Name = "dtpEndDateFilter";
+            this.dtpEndDateFilter.Size = new System.Drawing.Size(193, 26);
+            this.dtpEndDateFilter.TabIndex = 10;
+            // 
+            // dtpStartDateFilter
+            // 
+            this.dtpStartDateFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpStartDateFilter.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStartDateFilter.Location = new System.Drawing.Point(18, 206);
+            this.dtpStartDateFilter.Name = "dtpStartDateFilter";
+            this.dtpStartDateFilter.Size = new System.Drawing.Size(193, 26);
+            this.dtpStartDateFilter.TabIndex = 9;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(15, 123);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 17);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Status";
+            // 
+            // cbStatusFilter
+            // 
+            this.cbStatusFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStatusFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbStatusFilter.FormattingEnabled = true;
+            this.cbStatusFilter.Items.AddRange(new object[] {
+            "--Select Status--",
+            "Active",
+            "Inactive"});
+            this.cbStatusFilter.Location = new System.Drawing.Point(18, 143);
+            this.cbStatusFilter.Name = "cbStatusFilter";
+            this.cbStatusFilter.Size = new System.Drawing.Size(193, 28);
+            this.cbStatusFilter.TabIndex = 8;
+            // 
+            // lblRoleFilter
+            // 
+            this.lblRoleFilter.AutoSize = true;
+            this.lblRoleFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRoleFilter.Location = new System.Drawing.Point(15, 70);
+            this.lblRoleFilter.Name = "lblRoleFilter";
+            this.lblRoleFilter.Size = new System.Drawing.Size(37, 17);
+            this.lblRoleFilter.TabIndex = 10;
+            this.lblRoleFilter.Text = "Role";
+            // 
+            // lblFilter
+            // 
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilter.Location = new System.Drawing.Point(14, 9);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(88, 24);
+            this.lblFilter.TabIndex = 9;
+            this.lblFilter.Text = "Filter List:";
+            // 
+            // cbRoleFilter
+            // 
+            this.cbRoleFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRoleFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRoleFilter.FormattingEnabled = true;
+            this.cbRoleFilter.Location = new System.Drawing.Point(18, 90);
+            this.cbRoleFilter.Name = "cbRoleFilter";
+            this.cbRoleFilter.Size = new System.Drawing.Size(193, 28);
+            this.cbRoleFilter.TabIndex = 7;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.Location = new System.Drawing.Point(555, 13);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(63, 26);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(738, 13);
+            this.btnDelete.Location = new System.Drawing.Point(630, 13);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(57, 26);
-            this.btnDelete.TabIndex = 7;
+            this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // btnEdit
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.Location = new System.Drawing.Point(797, 13);
+            this.btnEdit.Location = new System.Drawing.Point(689, 13);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(53, 26);
-            this.btnEdit.TabIndex = 6;
+            this.btnEdit.TabIndex = 5;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(852, 13);
+            this.btnAdd.Location = new System.Drawing.Point(744, 13);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(53, 26);
-            this.btnAdd.TabIndex = 5;
+            this.btnAdd.TabIndex = 6;
             this.btnAdd.Text = "New";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
@@ -185,14 +315,14 @@
             this.tbSearch.Location = new System.Drawing.Point(83, 12);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(224, 26);
-            this.tbSearch.TabIndex = 4;
+            this.tbSearch.TabIndex = 1;
             // 
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(313, 12);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(68, 26);
-            this.btnSearch.TabIndex = 3;
+            this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             // 
@@ -212,7 +342,7 @@
             this.tpUserManage.Location = new System.Drawing.Point(4, 25);
             this.tpUserManage.Name = "tpUserManage";
             this.tpUserManage.Padding = new System.Windows.Forms.Padding(3);
-            this.tpUserManage.Size = new System.Drawing.Size(925, 479);
+            this.tpUserManage.Size = new System.Drawing.Size(1033, 442);
             this.tpUserManage.TabIndex = 1;
             this.tpUserManage.Text = "Manage";
             this.tpUserManage.UseVisualStyleBackColor = true;
@@ -243,7 +373,7 @@
             this.panelManageUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelManageUser.Location = new System.Drawing.Point(3, 3);
             this.panelManageUser.Name = "panelManageUser";
-            this.panelManageUser.Size = new System.Drawing.Size(919, 473);
+            this.panelManageUser.Size = new System.Drawing.Size(1027, 436);
             this.panelManageUser.TabIndex = 0;
             // 
             // label10
@@ -257,21 +387,23 @@
             // 
             // cbStatus
             // 
+            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatus.FormattingEnabled = true;
             this.cbStatus.Items.AddRange(new object[] {
+            "--Select Status--",
             "Active",
             "Inactive"});
             this.cbStatus.Location = new System.Drawing.Point(250, 259);
             this.cbStatus.Name = "cbStatus";
-            this.cbStatus.Size = new System.Drawing.Size(153, 24);
-            this.cbStatus.TabIndex = 51;
+            this.cbStatus.Size = new System.Drawing.Size(181, 24);
+            this.cbStatus.TabIndex = 20;
             // 
             // tbPhone
             // 
             this.tbPhone.Location = new System.Drawing.Point(63, 198);
             this.tbPhone.Name = "tbPhone";
-            this.tbPhone.Size = new System.Drawing.Size(340, 22);
-            this.tbPhone.TabIndex = 50;
+            this.tbPhone.Size = new System.Drawing.Size(368, 22);
+            this.tbPhone.TabIndex = 15;
             // 
             // label9
             // 
@@ -286,8 +418,8 @@
             // 
             this.tbEmail.Location = new System.Drawing.Point(63, 141);
             this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(340, 22);
-            this.tbEmail.TabIndex = 48;
+            this.tbEmail.Size = new System.Drawing.Size(368, 22);
+            this.tbEmail.TabIndex = 14;
             // 
             // label8
             // 
@@ -309,18 +441,19 @@
             // 
             // cbUserRole
             // 
+            this.cbUserRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUserRole.FormattingEnabled = true;
             this.cbUserRole.Location = new System.Drawing.Point(63, 259);
             this.cbUserRole.Name = "cbUserRole";
-            this.cbUserRole.Size = new System.Drawing.Size(153, 24);
-            this.cbUserRole.TabIndex = 44;
+            this.cbUserRole.Size = new System.Drawing.Size(168, 24);
+            this.cbUserRole.TabIndex = 19;
             // 
             // tbPasswordRepeat
             // 
             this.tbPasswordRepeat.Location = new System.Drawing.Point(520, 200);
             this.tbPasswordRepeat.Name = "tbPasswordRepeat";
-            this.tbPasswordRepeat.Size = new System.Drawing.Size(340, 22);
-            this.tbPasswordRepeat.TabIndex = 43;
+            this.tbPasswordRepeat.Size = new System.Drawing.Size(443, 22);
+            this.tbPasswordRepeat.TabIndex = 18;
             // 
             // label6
             // 
@@ -335,8 +468,8 @@
             // 
             this.tbLastName.Location = new System.Drawing.Point(250, 78);
             this.tbLastName.Name = "tbLastName";
-            this.tbLastName.Size = new System.Drawing.Size(153, 22);
-            this.tbLastName.TabIndex = 41;
+            this.tbLastName.Size = new System.Drawing.Size(181, 22);
+            this.tbLastName.TabIndex = 13;
             // 
             // label2
             // 
@@ -349,25 +482,25 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(460, 396);
+            this.btnCancel.Location = new System.Drawing.Point(509, 377);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(180, 40);
-            this.btnCancel.TabIndex = 39;
+            this.btnCancel.TabIndex = 22;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSave.BackColor = System.Drawing.Color.Cyan;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.btnSave.Location = new System.Drawing.Point(254, 396);
+            this.btnSave.Location = new System.Drawing.Point(303, 377);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(180, 40);
-            this.btnSave.TabIndex = 38;
+            this.btnSave.TabIndex = 21;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             // 
@@ -375,8 +508,8 @@
             // 
             this.tbPassword.Location = new System.Drawing.Point(520, 138);
             this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(340, 22);
-            this.tbPassword.TabIndex = 37;
+            this.tbPassword.Size = new System.Drawing.Size(443, 22);
+            this.tbPassword.TabIndex = 17;
             // 
             // label5
             // 
@@ -391,8 +524,8 @@
             // 
             this.tbUsername.Location = new System.Drawing.Point(520, 78);
             this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(340, 22);
-            this.tbUsername.TabIndex = 35;
+            this.tbUsername.Size = new System.Drawing.Size(443, 22);
+            this.tbUsername.TabIndex = 16;
             // 
             // label4
             // 
@@ -407,8 +540,8 @@
             // 
             this.tbFirstName.Location = new System.Drawing.Point(63, 78);
             this.tbFirstName.Name = "tbFirstName";
-            this.tbFirstName.Size = new System.Drawing.Size(153, 22);
-            this.tbFirstName.TabIndex = 33;
+            this.tbFirstName.Size = new System.Drawing.Size(168, 22);
+            this.tbFirstName.TabIndex = 12;
             // 
             // label3
             // 
@@ -429,11 +562,21 @@
             this.tbUserId.Text = "0";
             this.tbUserId.Visible = false;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(15, 186);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 17);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Date";
+            // 
             // UserView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(957, 582);
+            this.ClientSize = new System.Drawing.Size(1065, 545);
             this.Controls.Add(this.tcUser);
             this.Controls.Add(this.panel1);
             this.Name = "UserView";
@@ -444,6 +587,8 @@
             this.tcUser.ResumeLayout(false);
             this.tpUserList.ResumeLayout(false);
             this.tpUserList.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.tpUserManage.ResumeLayout(false);
             this.panelManageUser.ResumeLayout(false);
             this.panelManageUser.PerformLayout();
@@ -475,7 +620,7 @@
         private System.Windows.Forms.TextBox tbFirstName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbUserId;
-        private System.Windows.Forms.ComboBox cbRole;
+        private System.Windows.Forms.ComboBox cbRoleFilter;
         private System.Windows.Forms.ComboBox cbUserRole;
         private System.Windows.Forms.TextBox tbPasswordRepeat;
         private System.Windows.Forms.Label label6;
@@ -488,5 +633,16 @@
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cbStatusFilter;
+        private System.Windows.Forms.Label lblRoleFilter;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.Label lblModifiedAt;
+        private System.Windows.Forms.DateTimePicker dtpEndDateFilter;
+        private System.Windows.Forms.DateTimePicker dtpStartDateFilter;
+        private System.Windows.Forms.Button btnApplyFilter;
+        private System.Windows.Forms.Label label12;
     }
 }

@@ -5,6 +5,7 @@ using POS_V1.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace POS_V1.Presenters
         private BindingSource usersBindingSource;
         private IEnumerable<UserModel> userList;
         private List<ComboModel> roleList;
+        private List<ComboModel> statusList;
 
         public UserPresenter(IUserView view, IUserRepository repository)
         {
@@ -28,9 +30,10 @@ namespace POS_V1.Presenters
             // Subscribe to events
             this._view.SearchEvent += SearchUser;
             this._view.AddNewEvent += AddNewUser;
-            this._view.EditEvent += LoadSelectedUserToEdit;
-            this._view.SoftDeleteEvent += SoftDeletePet;
+            this._view.EditEvent += EditUser;
+            this._view.SoftDeleteEvent += SoftDeleteUser;
             this._view.SaveEvent += SaveUser;
+            this._view.RefreshEvent += RefreshUserList;
             this._view.CancelEvent += CancelAction;
 
             // Set user binded source
@@ -41,6 +44,7 @@ namespace POS_V1.Presenters
             this._view.Show();
         }
 
+       
         private void LoadAllUserList()
         {
             userList = _repository.GetAll();
@@ -51,6 +55,9 @@ namespace POS_V1.Presenters
         private List<ComboModel> LoadAllRoleList()
         {
             var roles = new List<ComboModel>();
+
+            roles.Add(new ComboModel() { Name = "-Select Role-", Value = 0 });
+
             foreach (var role in Enum.GetValues(typeof(UserRole)))
             {
                 int value = (int)role;
@@ -58,6 +65,7 @@ namespace POS_V1.Presenters
             }
             return roles;
         }
+
         private void SearchUser(object sender, EventArgs e)
         {
             bool emptyValue = string.IsNullOrEmpty(this._view.SearchValue);
@@ -69,19 +77,51 @@ namespace POS_V1.Presenters
 
         private void AddNewUser(object sender, EventArgs e)
         {
-            // do something behind the scenes
+            // Check whether inserting or updated
             _view.IsEdit = false;
-            _view.Message = "Tangina ayaw gumana";
         }
 
-        private void LoadSelectedUserToEdit(object sender, EventArgs e)
+        private void EditUser(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            // Display the User Manage tab
+            // Quick fix to show the User Manage tab 
+            // Avoid not showing the tab when clicking the Edit button
+            _view.ShowUserManage();
+
+            var user = (UserModel)usersBindingSource.Current;
+            _view.UserId = user.Id.ToString();
+            _view.Username = user.Username;
+            _view.Password = user.Password;
+            _view.PasswordRepeat = user.Password;
+            _view.FirstName = user.First_name;
+            _view.LastName = user.Last_name;
+            _view.Role = user.Role;
+            _view.Email = user.Email;
+            _view.Phone = user.Phone;
+            _view.Status = user.Status;
+
+            _view.IsEdit = true;
         }
 
-        private void SoftDeletePet(object sender, EventArgs e)
+        private void SoftDeleteUser(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            // Reload the List
+            try
+            {
+                var user = (UserModel)usersBindingSource.Current;
+                _repository.SoftDelete(user.Id);
+                _view.Message = "User successfully deleted.";
+                _view.MessageType = "Success";
+
+                // Refresh User List
+                LoadAllUserList();
+
+            }
+            catch (Exception ex)
+            {
+                _view.Message = "Error deleting the user." + ex.Message;
+                _view.MessageType = "Error";
+            }
         }
 
         private void SaveUser(object sender, EventArgs e)
@@ -94,38 +134,42 @@ namespace POS_V1.Presenters
             userModel.Role = (UserRole)_view.Role;
             userModel.Email = _view.Email;
             userModel.Phone = _view.Phone;
-            userModel.Is_active = _view.IsActive;
-            userModel.Created_at = DateTime.Now;
+            userModel.Status = _view.Status;
             userModel.Updated_at= DateTime.Now;
 
+            bool isCorrectPassword = _view.PasswordRepeat == userModel.Password;
 
             try
             {
-                if (_view.IsEdit)
+                // Domain layer validation, throw exception when one criteria fail
+                new ModelDataValidation().Validate(userModel);
+                if (isCorrectPassword)
                 {
-                    // implement edit logic here
+                    if (_view.IsEdit)
+                    {
+                        userModel.Id = Convert.ToInt32(_view.UserId);
+                        _view.Message = "User updated successfully.";
+                        _repository.Edit(userModel);
+                    }
+                    else
+                    {
+                        userModel.Created_at = DateTime.Now;
+                        _view.Message = "User added successfully.";
+                        _repository.Add(userModel);
+                    }
+
+                    _view.MessageType = "Success";
+                    _view.IsSuccessful = true;
+                    CleanviewFields();
+
+                    // Reload the List
+                    LoadAllUserList();
                 }
                 else
                 {
-                    new ModelDataValidation().Validate(userModel);
-                    Console.WriteLine("===== UserModel Details =====");
-                    Console.WriteLine($"Username   : {userModel.Username}");
-                    Console.WriteLine($"Password   : {userModel.Password}");
-                    Console.WriteLine($"First Name : {userModel.First_name}");
-                    Console.WriteLine($"Last Name  : {userModel.Last_name}");
-                    Console.WriteLine($"Role       : {userModel.Role}");
-                    Console.WriteLine($"Email      : {userModel.Email}");
-                    Console.WriteLine($"Phone      : {userModel.Phone}");
-                    Console.WriteLine($"Is Active  : {userModel.Is_active}");
-                    Console.WriteLine($"Created At : {userModel.Created_at}");
-                    Console.WriteLine($"Updated At : {userModel.Updated_at}");
-                    Console.WriteLine("==============================");
-
-                    //_repository.Add(userModel);
-                    _view.Message = "Successfully added new User.";
+                    _view.MessageType = "Error";
+                    _view.Message = "Password not match";
                 }
-                _view.MessageType = "Success";
-                _view.IsSuccessful = true;
             }
             catch (Exception ex)
             {
@@ -133,14 +177,30 @@ namespace POS_V1.Presenters
                 _view.MessageType = "Error";
                 _view.IsSuccessful = false;
             }
-           
+        }
 
-
+        private void RefreshUserList(object sender, EventArgs e)
+        {
+            LoadAllUserList();
         }
 
         private void CancelAction(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CleanviewFields();
+        }
+
+        private void CleanviewFields()
+        {
+            _view.UserId = "0";
+            _view.FirstName = "";
+            _view.LastName = "";
+            _view.Username = "";
+            _view.Password = "";
+            _view.PasswordRepeat = "";
+            _view.Email = "";
+            _view.Phone = "";
+            _view.Role = 0;
+            _view.Status = "";
         }
     }
 }

@@ -7,6 +7,10 @@ using System.Windows.Forms;
 
 namespace POS_V1.Services
 {
+    /*
+        This class will return the type of MessageBox Icon
+        set the value at Presenter in this format _view.Message = "Success"
+     */
     public static class CustomHelper
     {
         public static MessageBoxIcon GetMessageBoxIcon(string messageType)

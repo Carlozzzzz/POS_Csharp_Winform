@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace POS_V1.Models
 {
@@ -19,7 +20,7 @@ namespace POS_V1.Models
         private UserRole role;
         private string email;
         private string phone;
-        private bool is_active;
+        private string status;
         private bool is_deleted;
         private DateTime created_at;
         private DateTime updated_at;
@@ -50,7 +51,8 @@ namespace POS_V1.Models
 
         [DisplayName("User Role")]
         [Required(ErrorMessage = "User role is required.")]
-        [EnumDataType(typeof(UserRole), ErrorMessage = "Invalid role.")]
+        //[EnumDataType(typeof(UserRole), ErrorMessage = "Invalid role.")]
+        [Range(1, int.MaxValue, ErrorMessage = "Invalid role.")]
         public UserRole Role { get => role; set => role = value; }
 
         [DisplayName("Email")]
@@ -67,7 +69,8 @@ namespace POS_V1.Models
 
         [DisplayName("Status")]
         [Required(ErrorMessage = "Status is required.")]
-        public bool Is_active { get => is_active; set => is_active = value; }
+        [Range(1, 2, ErrorMessage = "Invalid status.")]
+        public string Status { get => status; set => status = value; }
 
         [DisplayName("Is Deleted")]
         public bool Is_deleted { get => is_deleted; set => is_deleted = value; }

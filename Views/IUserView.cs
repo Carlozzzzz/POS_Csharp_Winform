@@ -18,10 +18,10 @@ namespace POS_V1.Views
         string PasswordRepeat { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
-        int Role { get; set; }
+        UserRole Role { get; set; }
         string Email { get; set; }
         string Phone { get; set; }
-        bool IsActive { get; set; }
+        string Status { get; set; }
         bool IsDeleted { get; set; }
         DateTime CreatedAt { get; set; }
         DateTime UpdatedAt { get; set; }
@@ -30,6 +30,10 @@ namespace POS_V1.Views
         string SearchValue { get; set; }
         string Message { get; set; }
         string MessageType { get; set; }
+        string RoleFIlter { get; set; }
+        string StatusFilter { get; set; }
+        DateTime FromDateFilter { get; set; }
+        DateTime ToDateFilter { get; set; }
 
         // Events
         event EventHandler SearchEvent;
@@ -38,9 +42,11 @@ namespace POS_V1.Views
         event EventHandler SoftDeleteEvent;
         event EventHandler SaveEvent;
         event EventHandler CancelEvent;
+        event EventHandler RefreshEvent;
 
         // Methods
         void SetUserListBindingSource(BindingSource userList);
+        void ShowUserManage();
         void PopulateRole(List<ComboModel> roleList);
         void Show();
     }

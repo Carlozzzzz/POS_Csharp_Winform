@@ -38,9 +38,16 @@ namespace POS_V1.Views
                 };
 
             // Add
-            btnAdd.Click += delegate { 
+            btnAdd.Click += delegate 
+            { 
                 AddNewEvent?.Invoke(this, EventArgs.Empty);
                 ShowUserManage();
+            };
+
+            // Edit
+            btnEdit.Click += delegate
+            {
+                EditEvent?.Invoke(this, EventArgs.Empty);
             };
 
             // Save
@@ -54,9 +61,29 @@ namespace POS_V1.Views
 
                 MessageBox.Show(Message, MessageType, MessageBoxButtons.OK, CustomHelper.GetMessageBoxIcon(MessageType));
             };
+
+            //Softdelete
+            btnDelete.Click += delegate
+            {
+                var result = MessageBox.Show("Are you sure you want to delete this user?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    SoftDeleteEvent?.Invoke(this, EventArgs.Empty);
+                    MessageBox.Show(Message, MessageType, MessageBoxButtons.OK, CustomHelper.GetMessageBoxIcon(MessageType));
+                }
+            };
+
+            //Refresh
+            btnRefresh.Click += delegate { RefreshEvent?.Invoke(this, EventArgs.Empty); };
+
+            btnCancel.Click += delegate { 
+                CancelEvent?.Invoke(this, EventArgs.Empty);
+                ShowUserList();
+            };
         }
 
-        private void ShowUserManage()
+        public void ShowUserManage()
         {
             tcUser.TabPages.Remove(tpUserList);
             tcUser.TabPages.Add(tpUserManage);
@@ -92,9 +119,9 @@ namespace POS_V1.Views
             get => tbLastName.Text; 
             set => tbLastName.Text = value; 
         }
-        public int Role { 
-            get => (int)cbUserRole.SelectedValue;
-            set => cbUserRole.SelectedValue = (int)value; 
+        public UserRole Role {
+            get => (UserRole)(cbUserRole.SelectedValue ?? 0);
+            set => cbUserRole.SelectedValue = (int)value;
         }
         public string Email { 
             get => tbEmail.Text; 
@@ -105,9 +132,23 @@ namespace POS_V1.Views
             get => tbPhone.Text;
             set => tbPhone.Text = value;
         }
-        public bool IsActive {
-            get => cbStatus.SelectedItem?.ToString().ToLower() == "active";
-            set => cbStatus.SelectedItem = value ? "active" : "inactive";
+        public string Status{
+            get => cbStatus.SelectedIndex.ToString();
+            set {
+                Console.WriteLine(value);
+                if (value == "True")
+                {
+                    cbStatus.SelectedIndex = 1;
+                }
+                else if (value == "False")
+                {
+                    cbStatus.SelectedIndex = 2;
+                }
+                else
+                {
+                    cbStatus.SelectedIndex = 0;
+                }
+            }
         }
         public bool IsDeleted { 
             get => isDeleted; 
@@ -138,10 +179,46 @@ namespace POS_V1.Views
             get => messageType = string.IsNullOrEmpty(messageType) ? "Information" : messageType;
             set => messageType = string.IsNullOrEmpty(value) ? "Information" : value;
         }
+
+        // Filter Properties
         public string SearchValue
         {
             get => tbSearch.Text;
             set => tbSearch.Text = value;
+        }
+        public string RoleFIlter
+        {
+            get => ((UserRole)cbRoleFilter.SelectedValue).ToString(); 
+            set => cbRoleFilter.SelectedValue = value; 
+        }
+        public string StatusFilter
+        {
+            get => cbStatusFilter.SelectedIndex.ToString();
+            set
+            {
+                if (value == "True")
+                {
+                    cbStatusFilter.SelectedIndex = 1;
+                }
+                else if (value == "False")
+                {
+                    cbStatusFilter.SelectedIndex = 2;
+                }
+                else
+                {
+                    cbStatusFilter.SelectedIndex = 0;
+                }
+            }
+        }
+        public DateTime FromDateFilter
+        {
+            get => dtpStartDateFilter.Value;
+            set => dtpStartDateFilter.Value = value;
+        }
+        public DateTime ToDateFilter
+        {
+            get => dtpEndDateFilter.Value;
+            set => dtpEndDateFilter.Value = value;
         }
         #endregion
 
@@ -152,14 +229,15 @@ namespace POS_V1.Views
         public event EventHandler SoftDeleteEvent;
         public event EventHandler SaveEvent;
         public event EventHandler CancelEvent;
+        public event EventHandler RefreshEvent;
         #endregion
 
         public void SetUserListBindingSource(BindingSource userList)
         {
             userListGridView.DataSource = userList;
             userListGridView.Columns["Id"].Visible = false;
+            userListGridView.Columns["Password"].Visible = false;
             userListGridView.Columns["Is_deleted"].Visible = false;
-
         }
 
         public void PopulateRole(List<ComboModel> roleList)
@@ -167,6 +245,10 @@ namespace POS_V1.Views
             cbUserRole.DataSource = roleList;
             cbUserRole.ValueMember = "Value";
             cbUserRole.DisplayMember = "Name";
+
+            cbRoleFilter.DataSource = roleList;
+            cbRoleFilter.ValueMember = "Value";
+            cbRoleFilter.DisplayMember = "Name";
         }
 
         #region Display Behavior

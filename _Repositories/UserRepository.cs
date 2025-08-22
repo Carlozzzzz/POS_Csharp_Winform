@@ -20,10 +20,15 @@ namespace POS_V1._Repositories
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand())
             {
+
+                bool status = userModel.Status.ToLower() == "1" ? true : false;
+
                 connection.Open();
                 command.Connection = connection;
                 command.CommandText = @"INSERT INTO Users_Tbl
+                                        (username, password, first_name, last_name, role, email, phone, is_active, created_at, updated_at)
                                         VALUES (@username, @password, @first_name, @last_name, @role, @email, @phone, @is_active, @created_at, @updated_at)";
+
                 command.Parameters.Add("@username", System.Data.SqlDbType.NVarChar).Value = userModel.Username;
                 command.Parameters.Add("@password", System.Data.SqlDbType.NVarChar).Value = userModel.Password;
                 command.Parameters.Add("@first_name", System.Data.SqlDbType.NVarChar).Value = userModel.First_name;
@@ -31,21 +36,53 @@ namespace POS_V1._Repositories
                 command.Parameters.Add("@role", System.Data.SqlDbType.Int).Value = (int)userModel.Role;
                 command.Parameters.Add("@email", System.Data.SqlDbType.NVarChar).Value = userModel.Email;
                 command.Parameters.Add("@phone", System.Data.SqlDbType.NVarChar).Value = userModel.Phone;
-                command.Parameters.Add("@is_active", System.Data.SqlDbType.NVarChar).Value = userModel.Is_active;
-                command.Parameters.Add("@phone", System.Data.SqlDbType.NVarChar).Value = userModel.Created_at;
-                command.Parameters.Add("@phone", System.Data.SqlDbType.NVarChar).Value = userModel.Updated_at;
+                command.Parameters.Add("@is_active", System.Data.SqlDbType.Bit).Value = status;
+                command.Parameters.Add("@created_at", System.Data.SqlDbType.DateTime).Value = userModel.Created_at;
+                command.Parameters.Add("@updated_at", System.Data.SqlDbType.DateTime).Value = userModel.Updated_at;
                 command.ExecuteNonQuery();
             }
         }
 
         public void Edit(UserModel userModel)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand())
+            {
+                Console.WriteLine("Status: " + userModel.Status);
+
+                bool status = userModel.Status.ToLower() == "1" ? true : false;
+
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = @"UPDATE Users_Tbl
+                                        SET username = @username, password = @password, first_name = @first_name, last_name = @last_name, role = @role, email = @email, phone = @phone, is_active = @status, updated_at = @updated_at
+                                        WHERE id=@id";
+
+                command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = userModel.Id;
+                command.Parameters.Add("@username", System.Data.SqlDbType.NVarChar).Value = userModel.Username;
+                command.Parameters.Add("@password", System.Data.SqlDbType.NVarChar).Value = userModel.Password;
+                command.Parameters.Add("@first_name", System.Data.SqlDbType.NVarChar).Value = userModel.First_name;
+                command.Parameters.Add("@last_name", System.Data.SqlDbType.NVarChar).Value = userModel.Last_name;
+                command.Parameters.Add("@role", System.Data.SqlDbType.Int).Value = (int)userModel.Role;
+                command.Parameters.Add("@email", System.Data.SqlDbType.NVarChar).Value = userModel.Email;
+                command.Parameters.Add("@phone", System.Data.SqlDbType.NVarChar).Value = userModel.Phone;
+                command.Parameters.Add("@status", System.Data.SqlDbType.Bit).Value = status;
+                command.Parameters.Add("@updated_at", System.Data.SqlDbType.DateTime).Value = userModel.Updated_at;
+                command.ExecuteNonQuery();
+            }
         }
 
         public void SoftDelete(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = @"UPDATE Users_Tbl SET is_deleted='true' WHERE id=@id";
+                command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
+                command.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<UserModel> GetAll()
@@ -56,7 +93,7 @@ namespace POS_V1._Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "Select * from Users_Tbl ORDER BY id desc";
+                command.CommandText = "Select * from Users_Tbl WHERE is_deleted='false' ORDER BY id desc";
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -64,12 +101,13 @@ namespace POS_V1._Repositories
                         UserModel model = new UserModel();
                         model.Id = Convert.ToInt32(reader["id"]);
                         model.Username = reader["username"].ToString();
+                        model.Password = reader["password"].ToString();
                         model.First_name = reader["first_name"].ToString();
                         model.Last_name = reader["last_name"].ToString();
-                        model.Role = (UserRole)reader["role"];
+                        model.Role = (UserRole)Convert.ToInt32(reader["role"]);
                         model.Email = reader["email"].ToString();
                         model.Phone = reader["phone"].ToString();
-                        model.Is_active = (bool)reader["is_active"];
+                        model.Status = Convert.ToBoolean(reader["is_active"]) ? "True" : "False";
                         model.Is_deleted = (bool)reader["is_deleted"];
                         model.Created_at = (DateTime)reader["created_at"];
                         model.Updated_at = (DateTime)reader["updated_at"];
@@ -109,10 +147,10 @@ namespace POS_V1._Repositories
                         model.Username = reader["username"].ToString();
                         model.First_name = reader["first_name"].ToString();
                         model.Last_name = reader["last_name"].ToString();
-                        model.Role = (UserRole)reader["role"];
+                        model.Role = (UserRole)Convert.ToInt32(reader["role"]);
                         model.Email = reader["email"].ToString();
                         model.Phone = reader["phone"].ToString();
-                        model.Is_active = (bool)reader["is_active"];
+                        model.Status = Convert.ToBoolean(reader["is_active"]) ? "True" : "False";
                         model.Is_deleted = (bool)reader["is_deleted"];
                         model.Created_at = (DateTime)reader["created_at"];
                         model.Updated_at = (DateTime)reader["updated_at"];
