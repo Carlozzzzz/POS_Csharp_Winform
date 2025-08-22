@@ -135,6 +135,7 @@ namespace POS_V1._Repositories
                                             OR last_name LIKE '%'+@value+'%'
                                             OR email LIKE '%'+@value+'%'
                                             OR phone LIKE '%'+@value+'%'
+                                            AND is_deleted = 'false'
                                         ORDER BY id desc";
                 command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = userId;
                 command.Parameters.Add("@value", System.Data.SqlDbType.NVarChar).Value = value;
@@ -159,6 +160,90 @@ namespace POS_V1._Repositories
                     return userList;
                 }
             }
+
+
         }
+
+
+        public IEnumerable<UserModel> GetByFilter(UserFilterModel userFilterModel)
+        {
+            var userList = new List<UserModel>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+
+                string filter = "";
+                string whereStmt = "";
+                string andStmt = "";
+                int statusIndex = Convert.ToInt32(userFilterModel.Status);
+                int roleIndex = Convert.ToInt32(userFilterModel.RoleFilter);
+                bool isActive = statusIndex == 1 ? true : false;
+
+                if (statusIndex != 0 && roleIndex != 0)
+                {
+                    whereStmt = "WHERE";
+                    andStmt = "AND";
+                }
+                else
+                {
+                    andStmt = "WHERE";
+                }
+
+
+                if (statusIndex != 0)
+                {
+                    filter += " AND is_active = @status ";
+                    command.Parameters.Add("@status", System.Data.SqlDbType.Bit).Value = isActive;
+                }
+
+                if (roleIndex != 0)
+                {
+                    filter += " AND role = @role ";
+                    command.Parameters.Add("@role", System.Data.SqlDbType.NVarChar).Value = roleIndex;
+                }
+
+                string sql = "Select * from Users_Tbl " +
+                                      whereStmt + filter +
+                                      //"     AND (created_at >= @from_date_created " +
+                                      //"     AND (created_at = @to_date_created " +
+                                      andStmt + " is_deleted = 'false' " +
+                                      "ORDER BY id desc";
+
+                command.CommandText = sql;
+
+                Console.WriteLine(sql);
+
+
+                //command.Parameters.Add("@from_date_created", System.Data.SqlDbType.NVarChar).Value = userFilterModel.FromDateFilter;
+                //command.Parameters.Add("@to_date_created", System.Data.SqlDbType.NVarChar).Value = userFilterModel.ToDateFilter;
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        UserModel model = new UserModel();
+                        model.Id = Convert.ToInt32(reader["id"]);
+                        model.Username = reader["username"].ToString();
+                        model.First_name = reader["first_name"].ToString();
+                        model.Last_name = reader["last_name"].ToString();
+                        model.Role = (UserRole)Convert.ToInt32(reader["role"]);
+                        model.Email = reader["email"].ToString();
+                        model.Phone = reader["phone"].ToString();
+                        model.Status = Convert.ToBoolean(reader["is_active"]) ? "True" : "False";
+                        model.Is_deleted = (bool)reader["is_deleted"];
+                        model.Created_at = (DateTime)reader["created_at"];
+                        model.Updated_at = (DateTime)reader["updated_at"];
+                        userList.Add(model);
+                    }
+                    return userList;
+                }
+            }
+
+
+        }
+
+
     }
 }

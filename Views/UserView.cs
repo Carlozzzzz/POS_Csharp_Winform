@@ -25,17 +25,31 @@ namespace POS_V1.Views
         public UserView()
         {
             InitializeComponent();
+
+            // Event Invoker
             AssociateAndRaiseViewEvents();
             tcUser.TabPages.Remove(tpUserManage);
         }
 
+        #region Private Functions
         private void AssociateAndRaiseViewEvents()
         {
+            // Search and Filter
             btnSearch.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
             tbSearch.KeyDown += (s, e) =>
                 {
                     if (e.KeyCode == Keys.Enter) SearchEvent?.Invoke(this, EventArgs.Empty);
                 };
+
+            btnApplyFilter.Click += delegate { 
+                FilterEvent?.Invoke(this, EventArgs.Empty);
+
+                // Debugging the inputs
+                if (IsSuccessful == false)
+                {
+                    MessageBox.Show(Message);
+                }
+            };
 
             // Add
             btnAdd.Click += delegate 
@@ -83,16 +97,12 @@ namespace POS_V1.Views
             };
         }
 
-        public void ShowUserManage()
-        {
-            tcUser.TabPages.Remove(tpUserList);
-            tcUser.TabPages.Add(tpUserManage);
-        }
         private void ShowUserList()
         {
             tcUser.TabPages.Remove(tpUserManage);
             tcUser.TabPages.Add(tpUserList);
         }
+        #endregion
 
         #region Properties
         public string UserId { 
@@ -186,9 +196,9 @@ namespace POS_V1.Views
             get => tbSearch.Text;
             set => tbSearch.Text = value;
         }
-        public string RoleFIlter
+        public int RoleFilter
         {
-            get => ((UserRole)cbRoleFilter.SelectedValue).ToString(); 
+            get => (int)cbRoleFilter.SelectedValue; 
             set => cbRoleFilter.SelectedValue = value; 
         }
         public string StatusFilter
@@ -224,6 +234,7 @@ namespace POS_V1.Views
 
         #region Events
         public event EventHandler SearchEvent;
+        public event EventHandler FilterEvent;
         public event EventHandler AddNewEvent;
         public event EventHandler EditEvent;
         public event EventHandler SoftDeleteEvent;
@@ -232,6 +243,7 @@ namespace POS_V1.Views
         public event EventHandler RefreshEvent;
         #endregion
 
+        #region Implemented Functions
         public void SetUserListBindingSource(BindingSource userList)
         {
             userListGridView.DataSource = userList;
@@ -245,11 +257,26 @@ namespace POS_V1.Views
             cbUserRole.DataSource = roleList;
             cbUserRole.ValueMember = "Value";
             cbUserRole.DisplayMember = "Name";
+        }
 
+        public void PopulateRoleFilter(List<ComboModel> roleList)
+        {
+            roleList[0].Name = "All";
             cbRoleFilter.DataSource = roleList;
             cbRoleFilter.ValueMember = "Value";
             cbRoleFilter.DisplayMember = "Name";
         }
+        public void InitializeFilters()
+        {
+            StatusFilter = "0";
+
+        }
+        public void ShowUserManage()
+        {
+            tcUser.TabPages.Remove(tpUserList);
+            tcUser.TabPages.Add(tpUserManage);
+        }
+        #endregion
 
         #region Display Behavior
         // Singleton pattern (Open a single form instance)

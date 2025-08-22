@@ -54,6 +54,7 @@
     <Compile Include="Models\ComboModel.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\UserFilterModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />

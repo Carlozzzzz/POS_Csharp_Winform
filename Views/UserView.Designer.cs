@@ -34,6 +34,7 @@
             this.tcUser = new System.Windows.Forms.TabControl();
             this.tpUserList = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.btnApplyFilter = new System.Windows.Forms.Button();
             this.lblModifiedAt = new System.Windows.Forms.Label();
             this.dtpEndDateFilter = new System.Windows.Forms.DateTimePicker();
@@ -73,7 +74,6 @@
             this.tbFirstName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbUserId = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userListGridView)).BeginInit();
             this.tcUser.SuspendLayout();
@@ -172,6 +172,16 @@
             this.panel2.Size = new System.Drawing.Size(227, 436);
             this.panel2.TabIndex = 10;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(15, 186);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 17);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Date";
+            // 
             // btnApplyFilter
             // 
             this.btnApplyFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -205,6 +215,7 @@
             this.dtpEndDateFilter.Name = "dtpEndDateFilter";
             this.dtpEndDateFilter.Size = new System.Drawing.Size(193, 26);
             this.dtpEndDateFilter.TabIndex = 10;
+            this.dtpEndDateFilter.Value = new System.DateTime(2100, 1, 1, 0, 0, 0, 0);
             // 
             // dtpStartDateFilter
             // 
@@ -214,6 +225,7 @@
             this.dtpStartDateFilter.Name = "dtpStartDateFilter";
             this.dtpStartDateFilter.Size = new System.Drawing.Size(193, 26);
             this.dtpStartDateFilter.TabIndex = 9;
+            this.dtpStartDateFilter.Value = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             // 
             // label11
             // 
@@ -231,7 +243,7 @@
             this.cbStatusFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbStatusFilter.FormattingEnabled = true;
             this.cbStatusFilter.Items.AddRange(new object[] {
-            "--Select Status--",
+            "All",
             "Active",
             "Inactive"});
             this.cbStatusFilter.Location = new System.Drawing.Point(18, 143);
@@ -561,16 +573,6 @@
             this.tbUserId.TabIndex = 31;
             this.tbUserId.Text = "0";
             this.tbUserId.Visible = false;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(15, 186);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(38, 17);
-            this.label12.TabIndex = 17;
-            this.label12.Text = "Date";
             // 
             // UserView
             // 

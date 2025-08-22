@@ -29,6 +29,7 @@ namespace POS_V1.Presenters
 
             // Subscribe to events
             this._view.SearchEvent += SearchUser;
+            this._view.FilterEvent += FilterUser;
             this._view.AddNewEvent += AddNewUser;
             this._view.EditEvent += EditUser;
             this._view.SoftDeleteEvent += SoftDeleteUser;
@@ -41,7 +42,12 @@ namespace POS_V1.Presenters
             this._view.SetUserListBindingSource(usersBindingSource);
             this.roleList = LoadAllRoleList();
             this._view.PopulateRole(roleList);
+            this._view.PopulateRoleFilter(roleList);
+
             this._view.Show();
+
+            // Initialize Filters
+            this._view.InitializeFilters();
         }
 
        
@@ -73,6 +79,38 @@ namespace POS_V1.Presenters
             else userList = _repository.GetByValue(this._view.SearchValue);
 
             usersBindingSource.DataSource = userList;
+        }
+
+        private void FilterUser(object sender, EventArgs e)
+        {
+            try
+            {
+              
+                UserFilterModel userFilterModel = new UserFilterModel();
+                userFilterModel.RoleFilter = _view.RoleFilter;
+                userFilterModel.Status = _view.StatusFilter;
+                userFilterModel.FromDateFilter = _view.FromDateFilter;
+                userFilterModel.ToDateFilter = _view.ToDateFilter;
+
+                userList = _repository.GetByFilter(userFilterModel);
+                usersBindingSource.DataSource = userList;
+                _view.Message = "Message bug";
+                _view.IsSuccessful = true;
+
+            }
+            catch (Exception ex)
+            {
+                _view.Message = ex.Message;
+                _view.MessageType = "Error";
+                _view.IsSuccessful = false;
+            }
+           
+
+            //_view.Message += "UserFilters: \n";
+            //_view.Message += userFilterModel.RoleFilter + "\n";
+            //_view.Message += userFilterModel.Status + "\n";
+            //_view.Message += userFilterModel.FromDateFilter + "\n";
+            //_view.Message += userFilterModel.ToDateFilter + "\n";
         }
 
         private void AddNewUser(object sender, EventArgs e)

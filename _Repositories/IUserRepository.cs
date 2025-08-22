@@ -15,5 +15,7 @@ namespace POS_V1._Repositories
 
         IEnumerable<UserModel> GetAll();
         IEnumerable<UserModel> GetByValue(string value);
+
+        IEnumerable<UserModel> GetByFilter(UserFilterModel userFilterModel);
     }
 }

@@ -30,13 +30,14 @@ namespace POS_V1.Views
         string SearchValue { get; set; }
         string Message { get; set; }
         string MessageType { get; set; }
-        string RoleFIlter { get; set; }
+        int RoleFilter { get; set; }
         string StatusFilter { get; set; }
         DateTime FromDateFilter { get; set; }
         DateTime ToDateFilter { get; set; }
 
         // Events
         event EventHandler SearchEvent;
+        event EventHandler FilterEvent;
         event EventHandler AddNewEvent;
         event EventHandler EditEvent;
         event EventHandler SoftDeleteEvent;
@@ -48,6 +49,8 @@ namespace POS_V1.Views
         void SetUserListBindingSource(BindingSource userList);
         void ShowUserManage();
         void PopulateRole(List<ComboModel> roleList);
+        void PopulateRoleFilter(List<ComboModel> roleList);
+        void InitializeFilters();
         void Show();
     }
 }
