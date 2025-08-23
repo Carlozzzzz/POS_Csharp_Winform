@@ -51,6 +51,10 @@ namespace POS_V1.Views
             get => isLoggedOut; 
             set => isLoggedOut = value; 
         }
+        public string Username { 
+            get => lblUserLoggedin.Text; 
+            set => lblUserLoggedin.Text = value;
+        }
         public string Message { 
             get => message; 
             set => message = value; 

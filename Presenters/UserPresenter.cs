@@ -19,6 +19,7 @@ namespace POS_V1.Presenters
         private BindingSource usersBindingSource;
         private IEnumerable<UserModel> userList;
         private List<ComboModel> roleList;
+        private List<ComboModel> roleFilterList;
         private List<ComboModel> statusList;
 
         public UserPresenter(IUserView view, IUserRepository repository)
@@ -42,7 +43,8 @@ namespace POS_V1.Presenters
             this._view.SetUserListBindingSource(usersBindingSource);
             this.roleList = LoadAllRoleList();
             this._view.PopulateRole(roleList);
-            this._view.PopulateRoleFilter(roleList);
+            this.roleFilterList = LoadAllRoleFilterList();
+            this._view.PopulateRoleFilter(roleFilterList);
 
             this._view.Show();
 
@@ -72,6 +74,20 @@ namespace POS_V1.Presenters
             return roles;
         }
 
+        private List<ComboModel> LoadAllRoleFilterList()
+        {
+            var roles = new List<ComboModel>();
+
+            roles.Add(new ComboModel() { Name = "All", Value = 0 });
+
+            foreach (var role in Enum.GetValues(typeof(UserRole)))
+            {
+                int value = (int)role;
+                roles.Add(new ComboModel() { Name = role.ToString(), Value = value });
+            }
+            return roles;
+        }
+
         private void SearchUser(object sender, EventArgs e)
         {
             bool emptyValue = string.IsNullOrEmpty(this._view.SearchValue);
@@ -92,25 +108,68 @@ namespace POS_V1.Presenters
                 userFilterModel.FromDateFilter = _view.FromDateFilter;
                 userFilterModel.ToDateFilter = _view.ToDateFilter;
 
-                userList = _repository.GetByFilter(userFilterModel);
+                userList = _repository.GetAll();
+
+                var filteredList = userList.Where(u =>
+                    u.Created_at.Date >= userFilterModel.FromDateFilter.Date &&
+                    u.Created_at.Date <= userFilterModel.ToDateFilter.Date
+                );
+
+                if (userFilterModel.RoleFilter != 0)
+                {
+                    filteredList = filteredList.Where(u => u.Role == ValidateUserRole(userFilterModel.RoleFilter));
+                }
+                if (userFilterModel.Status != "0")
+                {
+                    filteredList = filteredList.Where(u => u.Status == ValidateStatus(userFilterModel.Status));
+                }
+                _view.Message += "UserFilters: \n";
+                _view.Message += userFilterModel.RoleFilter + "\n";
+                _view.Message += userFilterModel.Status + "\n";
+                _view.Message += userFilterModel.FromDateFilter + "\n";
+                _view.Message += userFilterModel.ToDateFilter + "\n";
+
+                userList = filteredList.ToList();
                 usersBindingSource.DataSource = userList;
-                _view.Message = "Message bug";
                 _view.IsSuccessful = true;
 
             }
             catch (Exception ex)
             {
-                _view.Message = ex.Message;
+                _view.Message = "Filter Error";
                 _view.MessageType = "Error";
                 _view.IsSuccessful = false;
             }
            
+            UserRole ValidateUserRole(int index)
+            {
+                switch (index)
+                {
+                    case 1:
+                        return UserRole.Admin;
+                    case 2:
+                        return UserRole.User;
+                    case 3:
+                        return UserRole.Cashier;
+                    case 4:
+                        return UserRole.Manage;
+                    default:
+                        return 0;
+                }
+            }
 
-            //_view.Message += "UserFilters: \n";
-            //_view.Message += userFilterModel.RoleFilter + "\n";
-            //_view.Message += userFilterModel.Status + "\n";
-            //_view.Message += userFilterModel.FromDateFilter + "\n";
-            //_view.Message += userFilterModel.ToDateFilter + "\n";
+            string ValidateStatus(string index)
+            {
+                switch (index)
+                {
+                    case "1":
+                        return "True";
+                    case "2":
+                        return "False";
+                    default:
+                        return null;
+                }
+            }
         }
 
         private void AddNewUser(object sender, EventArgs e)

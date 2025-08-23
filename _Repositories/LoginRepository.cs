@@ -20,7 +20,7 @@ namespace POS_V1._Repositories
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT username, role from Users_Tbl WHERE username = @username AND password = @password";
+                string query = "SELECT id, username, first_name, role from Users_Tbl WHERE username = @username AND password = @password";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@username", username);
@@ -30,7 +30,9 @@ namespace POS_V1._Repositories
                         if (reader.Read())
                         {
                             LoginModel model = new LoginModel();
+                            model.Id = Convert.ToInt32(reader["id"]);
                             model.Username = reader["username"].ToString();
+                            model.FirstName = reader["first_name"].ToString();
                             model.Role = (UserRole)reader["role"];
                             return model;
                         }

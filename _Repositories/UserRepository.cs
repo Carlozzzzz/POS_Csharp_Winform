@@ -164,7 +164,6 @@ namespace POS_V1._Repositories
 
         }
 
-
         public IEnumerable<UserModel> GetByFilter(UserFilterModel userFilterModel)
         {
             var userList = new List<UserModel>();
@@ -243,7 +242,5 @@ namespace POS_V1._Repositories
 
 
         }
-
-
     }
 }

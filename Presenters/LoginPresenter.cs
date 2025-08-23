@@ -44,6 +44,12 @@ namespace POS_V1.Presenters
                 _loginView.IsSuccessful = true;
                 _loginView.Message = "Logged in Success.";
                 _loginView.DialogResult = DialogResult.OK;
+
+                // Set Session
+                Session.SetSession(model);
+
+
+                // Close the login view
                 _loginView.Close();
 
             }

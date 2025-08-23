@@ -11,6 +11,7 @@ namespace POS_V1.Views
     public interface IMainView
     {
         bool IsLoggedout { get; set; }
+        string Username { get; set; }
         string Message { get; set; }
 
         event EventHandler LogoutEvent;

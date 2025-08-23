@@ -1,4 +1,5 @@
 ﻿using POS_V1._Repositories;
+using POS_V1.Services;
 using POS_V1.Views;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace POS_V1.Presenters
             this._mainView = mainView;
             this.connectionString = connectionString;
 
+            // Set the username from the session
+            this._mainView.Username = Session.CurrentUsername;
 
             // Subscribe to the event here
             this._mainView.LogoutEvent += Logout;
@@ -50,6 +53,9 @@ namespace POS_V1.Presenters
 
         private void Logout(object sender, EventArgs e)
         {
+            // Removing the session
+            Session.ClearSession();
+            _mainView.Username = "";
             _mainView.IsLoggedout = true;
             _mainView.Close();
         }

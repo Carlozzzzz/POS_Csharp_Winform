@@ -12,6 +12,7 @@ namespace POS_V1.Models
     {
         private int id;
         private string username;
+        private string first_name;
         private string password;
         private UserRole role;
 
@@ -23,6 +24,9 @@ namespace POS_V1.Models
         [Required(ErrorMessage = "Username is required")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Username must be 3 - 50 characters.")]       
         public string Username { get => username; set => username = value; }
+
+        [DisplayName("First Name")]
+        public string FirstName { get => first_name; set => first_name = value; }
 
         [DisplayName("Password")]
         [Required(ErrorMessage = "Password is required")]

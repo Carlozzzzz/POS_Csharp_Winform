@@ -55,6 +55,7 @@ namespace POS_V1.Views
             btnAdd.Click += delegate 
             { 
                 AddNewEvent?.Invoke(this, EventArgs.Empty);
+                Status = "";
                 ShowUserManage();
             };
 
@@ -145,7 +146,6 @@ namespace POS_V1.Views
         public string Status{
             get => cbStatus.SelectedIndex.ToString();
             set {
-                Console.WriteLine(value);
                 if (value == "True")
                 {
                     cbStatus.SelectedIndex = 1;
@@ -261,10 +261,10 @@ namespace POS_V1.Views
 
         public void PopulateRoleFilter(List<ComboModel> roleList)
         {
-            roleList[0].Name = "All";
             cbRoleFilter.DataSource = roleList;
             cbRoleFilter.ValueMember = "Value";
             cbRoleFilter.DisplayMember = "Name";
+
         }
         public void InitializeFilters()
         {
