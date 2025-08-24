@@ -25,3 +25,4 @@ D:\POS_Csharp_Winform\obj\Debug\POS_V1.exe
 D:\POS_Csharp_Winform\obj\Debug\POS_V1.pdb
 D:\POS_Csharp_Winform\obj\Debug\POS_V1.Views.MainView.resources
 D:\POS_Csharp_Winform\obj\Debug\POS_V1.Views.UserView.resources
+D:\POS_Csharp_Winform\obj\Debug\POS_V1.Views.ProductView.resources
